@@ -14,10 +14,11 @@ video {
 .homepage-container {
     margin: 70px 0;
     // height: 500px;
-    padding-top: 40px;
+    padding: 40px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid #ccc ;
 }
 .home_content {
     display: flex;
