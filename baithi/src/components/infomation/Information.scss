@@ -1,0 +1,49 @@
+.information {
+  margin-top: 30px;
+  padding-bottom: 90px;
+}
+
+.infor-img {
+  flex: 3;
+}
+.infor-img-item {
+  width: 98%;
+}
+.infor-acc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 40px;
+  &.right {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+.infor-body {
+  flex: 2;
+}
+.infor-header-title {
+  text-align: center;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: rgb(196, 53, 10);
+}
+.infor-header {
+  padding: 0 12px;
+}
+.infor-item {
+  font-size: 16px;
+  color: rgb(206, 206, 206);
+}
+.infor-list {
+  list-style: none;
+}
+.infor-icon {
+  margin-right: 10px;
+  font-size: 22px;
+}
+.infor-content {
+  margin-top: 20px;
+  padding: 0 12px;
+}

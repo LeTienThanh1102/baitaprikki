@@ -1,0 +1,54 @@
+video {
+    // position: fixed;
+    width: 55%;
+    height: 600px;
+    bottom: 0;
+    border-radius: 10px;
+}
+.home-img{
+    width: 55%;
+    // height: 500px;
+    bottom: 0;
+    border-radius: 10px;
+}
+.homepage-container {
+    margin: 70px 0;
+    // height: 500px;
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home_header {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 15px 0;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fa6706;
+}
+.home_text {
+    font-size: 18px;
+    color: #e9e3e3;
+    line-height: 28px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.btn-click {
+    padding: 6px 18px;
+    border-radius: 5px;
+    color: red;
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px #494848 solid;
+    &:hover {
+        background-color: #ec4040;
+        color: #ccc;
+    }
+}

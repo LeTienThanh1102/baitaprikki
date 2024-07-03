@@ -1,0 +1,29 @@
+.footer{
+    margin-left: 120px;
+    background-color: #232627;
+    padding: 30px 20px;
+}
+.footer-pro{
+    display: flex;
+
+}
+.footer-content{
+    width: 30%;
+}
+.footer__list{
+    list-style: none;
+}
+.footer-heading{
+    font-size: 22px;
+    color: #c95609;
+}
+.footer_item{
+    font-size: 16px;
+    color: #c7c5c5;
+    padding: 6px 0;
+    a{
+        text-decoration: none;
+        text-transform: none;
+        color: #c2bfbd;
+    }
+}
