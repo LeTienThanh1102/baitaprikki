@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { postLogin } from "../../service/apiService";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/authSlice";
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const handleLogin = (e) => {};
+  const handleLogin = async(e) => {
+    e.preventDefault();
+    let res=await postLogin(email, pass);
+    console.log(res);
+    if(res && res.EC===0){
+      navigate('/');
+      dispatch(updateUser(res))
+
+    }
+    if(res && res.EC!==0){
+      alert('Nhập sai mật khẩu'); 
+    }
+  };
   return (
     <div className="login">
       <div
@@ -36,7 +52,7 @@ const Login = () => {
 
         <div className="login__society">
           <form onSubmit={(e) => handleLogin(e)}>
-            <div class="mb-3">
+            <div className="mb-3">
               <label for="exampleFormControlInput1" className="form-label">
                 Email address
               </label>

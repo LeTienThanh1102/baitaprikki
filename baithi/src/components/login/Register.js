@@ -1,14 +1,33 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Register.scss';
+import "./Register.scss";
+import { postRegister } from "../../service/apiService";
 function Register() {
-    const navigate =useNavigate();
-    const [email, setEmail]=useState('');
-    const [password, setPassword]=useState('');
-    const [username, setUsername]=useState('');
-    const handleRegister=()=>{
-
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  const handleRegister = async () => {
+    const isValidateEmail = validateEmail(email);
+    if (!isValidateEmail) {
+      alert("Error Format");
+      return;
     }
+    let res = await postRegister(email, username, password);
+    if (res && res.EC === 0) {
+      navigate("/login");
+    }
+    if (res && res.EC !== 0) {
+      alert("Nhập sai account. Hãy tạo lại tài khoản");
+    }
+  };
   return (
     <div className="register">
       <div
@@ -34,7 +53,9 @@ function Register() {
         <div className="register_contaniner">
           <div className="register-header">
             <p className="register_name active">Register</p>
-            <h1 style={{ fontSize: "28px", color:"rgb(102, 36, 8)" }}>ĐĂNG KÍ MỘT TÀI KHOẢN MỚI</h1>
+            <h1 style={{ fontSize: "28px", color: "rgb(102, 36, 8)" }}>
+              ĐĂNG KÍ MỘT TÀI KHOẢN MỚI
+            </h1>
           </div>
           <div className="register__acc-content">
             <label className="lable-text">Email:</label>
