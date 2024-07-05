@@ -15,14 +15,14 @@ function Header() {
   const navigate=useNavigate();
   const edit=useRef();
   const handleNavigateLogin=()=>{
-    navigate('/login');
+    navigate('/');
   }
   const handleCloseMenu=()=>{
     edit.current.classList.remove("active");
   }
   const handleLogout=()=>{
     dispatch(logout());
-    navigate('/login');
+    navigate('/');
   }
   const handleClick = () => {
     edit.current.classList.toggle("active");
@@ -30,7 +30,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header_logo">
-        <Link to="/" className="header_logo_text">
+        <Link to="/home" className="header_logo_text">
           <h2 className="header_name" >TIENTHANH</h2>
         </Link>
       </div>

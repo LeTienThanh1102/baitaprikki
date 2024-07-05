@@ -1,0 +1,66 @@
+.modal-add-user {
+    .img-review {
+        height: 150px;
+        border: 1px dashed red;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #6e6d6d;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .lable-upload {
+        gap: 5px;
+        border: 1px solid red;
+        border-radius: 5px;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        padding: 4px 10px;
+        background-color: rgb(240, 66, 66);
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background-color: #6e6d6d;
+            color: #000;
+        }
+    }
+}
+.titile {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 5px 12px;
+    color: red;
+}
+.user-content {
+    display: flex;
+    margin: 18px 12px;
+    flex-direction: column;
+}
+.user-add {
+    margin: 0 12px;
+    margin-bottom: 30px;
+}
+.user-name {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #2d30e7;
+    color: rgb(221, 217, 217);
+    font-size: 18px;
+    padding: 4px 12px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.icon-user {
+    margin-right: 12px;
+    font-size: 28px;
+}
+.btn-table-user {
+    font-size: 18px;
+    color: #440b0b;
+    padding: 0 12px;
+}
+

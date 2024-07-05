@@ -1,0 +1,29 @@
+.side-main{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    background-color: #424141;
+}
+.sidebar-header {
+    margin-top: 20px;
+    border-bottom: 1px #e97b33 solid;
+    margin-bottom: 3px;
+}
+.sidebar-text {
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    color: #d85c09;
+}
+.side-img {
+    height: 100vh;
+}
+.side-ecomm {
+    margin-top: 20px;
+    border-top: 1px solid #c4512e;
+}
+.side-main{
+    height: 100vh;
+}

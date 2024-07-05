@@ -1,0 +1,132 @@
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { FiPlusCircle } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import { postCreatUser } from '../../../../service/apiService';
+
+function ModalCreateUser({ show, setShow, fecthlistUeser }) {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [username, setUername] = useState('');
+    const [anh, setAnh] = useState('');
+    const [role, setRole] = useState('USER');
+    const [prevew, setreview] = useState('');
+    const handleClose = () => {
+        setShow(false);
+        setEmail('');
+        setPass('');
+        setRole('');
+        setAnh('');
+        setUername('');
+        setreview('');
+    };
+    const handleUpload = (e) => {
+        if (e.target && e.target.files && e.target.files[0]) {
+            setreview(URL.createObjectURL(e.target.files[0]));
+            setAnh(e.target.files[0]);
+        } else {
+            // setreview('')
+        }
+    };
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            );
+    };
+    const handleSubmited = async () => {
+        const isValidEmail = validateEmail(email);
+        if (!isValidEmail) {
+            toast.error('Invalid Email');
+            return;
+        }
+        if (!pass) {
+            toast.error('Invalid Password');
+            return;
+        }
+        let data = await postCreatUser(email, pass, username, role, anh);
+        console.log(data);
+        if (data && data.EC === 0) {
+            toast.success(data.EM);
+            await fecthlistUeser();
+            handleClose();
+        }
+        if (data && data.EC !== 0) {
+            toast.error(data.EM);
+            handleClose();
+        }
+        setShow(false);
+    };
+    return (
+        <>
+            <Modal show={show} onHide={handleClose} size="xl" className="modal-add-user">
+                <Modal.Header closeButton>
+                    <Modal.Title>Add New User</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form className="row g-3">
+                        <div className="col-md-6">
+                            <label className="form-label">Email</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Password</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                value={pass}
+                                onChange={(e) => setPass(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-12">
+                            <label className="form-label">Dicription</label>
+                            <input type="text" className="form-control" placeholder="......." />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Username</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={username}
+                                onChange={(e) => setUername(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-md-4">
+                            <label className="form-label">Role</label>
+                            <select className="form-select" onChange={(e) => setRole(e.target.value)}>
+                                <option value="USER">USER</option>
+                                <option value="ADMIN"> ADMIN</option>
+                            </select>
+                        </div>
+                        <div className="col-md-12">
+                            <label className="form-label lable-upload" htmlFor="active">
+                                <FiPlusCircle />
+                                Upload File Image
+                            </label>
+                            <input type="file" id="active" hidden onChange={(e) => handleUpload(e)} />
+                        </div>
+                        <div className=" col-md-12 img-review">
+                            {prevew ? <img src={prevew} /> : <span> review imgae</span>}
+                        </div>
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={() => handleSubmited()}>
+                        Save
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+export default ModalCreateUser;

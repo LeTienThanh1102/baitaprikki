@@ -14,7 +14,7 @@ const Login = () => {
     let res=await postLogin(email, pass);
     console.log(res);
     if(res && res.EC===0){
-      navigate('/');
+      navigate('/home');
       dispatch(updateUser(res))
 
     }
@@ -74,7 +74,7 @@ const Login = () => {
                 onChange={(e) => setPass(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn-login btn">
+            <button type="submit" className="btn-login">
               {" "}
               Login
             </button>
