@@ -7,6 +7,7 @@ import About from "./papes/about/About";
 import Admin from "./papes/admin/Admin";
 import DashBoard from "./papes/admin/content/DashBoard";
 import ManageUser from "./papes/admin/content/manageUser/ManageUser";
+import ManageQuiz from "./papes/admin/content/quizz/ManageQuiz";
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
           <Route path="/admin" element={<Admin></Admin>}>
             <Route index element={<DashBoard />}></Route>
             <Route path="manager" element={<ManageUser />}></Route>
+            <Route path="manager-quizzer" element={<ManageQuiz />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

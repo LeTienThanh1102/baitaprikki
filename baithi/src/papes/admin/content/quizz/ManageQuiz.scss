@@ -1,0 +1,38 @@
+.quiz-container{
+
+    legend{
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+.quiz-title{
+    font-size: 22px ;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #eb2929;
+}
+.upload{
+    font-size: 15px;
+    padding: 0 15px;
+    color: #2a14ee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.img-review-upload{
+    width: 500px;
+    height: 300px;
+    object-fit: contain;
+}
+.button-save{
+    display: flex;
+    justify-content: end;
+    padding: 0 20px;
+}
+.list-detail{
+    margin: 33px;
+}
+.table-title{
+    font-size: 20px;
+    font-weight: 600;
+    color: #eb2929;
+}
