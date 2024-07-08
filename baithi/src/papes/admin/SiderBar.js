@@ -18,7 +18,7 @@ function SiderBar() {
     <div className="side-main">
       <Sidebar>
         <div
-          style={{ display: "flex", flexDirection: "column", height: "100vh", backgroundColor:"#424141"}}
+          style={{ display: "flex", flexDirection: "column", height: "100vh"}}
         >
           <div
             className="sidebar-header"
@@ -29,7 +29,7 @@ function SiderBar() {
             <p className="sidebar-text">Quản lí: </p>
           </div>
 
-          <div style={{ flex: 1, marginBottom: "32px", color:"#f07a2b"}}>
+          <div style={{ flex: 1, marginBottom: "32px"}}>
             <Menu>
               <SubMenu
                 label="Features"
