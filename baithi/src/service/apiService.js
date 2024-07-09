@@ -62,7 +62,14 @@ const putUpdateQuizz = (id, description, name, difficulty, quizImage) => {
 const deleteQuiz = (id) => {
     return axios.delete(`api/v1/quiz/${id}`);
 };
+const getQuizwithQA = (quizId) => {
+    return axios.get(`api/v1/quiz-with-qa/${quizId}`);
+};
+
+const postUpsertQA = (data) => {
+    return axios.post(`api/v1/quiz-upsert-qa`, { ...data });
+};
 
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
-    ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz
+    ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA
 }

@@ -1,4 +1,4 @@
-// import QuizQA from './QuizQA';
+import QuizQA from './QuizQA';
 // import AssignQA from './AssignQA';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -12,7 +12,7 @@ function ManageQuiz() {
                     <AddNewQuiz />
                 </Tab>
                 <Tab eventKey="profile" title="Cập Nhật Q/A Cho Bài Thi">
-                    {/* <QuizQA /> */}
+                    <QuizQA />
                 </Tab>
                 <Tab eventKey="longer-tab" title="Gán Quiz Cho Người Dùng">
                     {/* <AssignQA /> */}

@@ -1,0 +1,114 @@
+.question-container{
+    padding: 15px 0;
+   
+    .question-title{
+        margin-bottom: 10px;
+        font-size: 22px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+}
+.question-new{
+    background-color: #0a708a;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+.question-content{
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 5px;
+   
+}
+.question-add-new{
+    margin-left: 15px;
+}
+.add-new-question{
+    font-size: 20px;
+    margin: 10px 0;
+    color: #ad0d0d;
+    font-weight: 500;
+}
+.description{
+    width: 50%;
+    margin-right: 50px;
+}
+.label-des{
+    color: #fff;
+    font-size: 18px;
+    margin: 6px 0;
+}
+.text-des{
+    width: 100%;    
+    border-radius: 5px;
+    margin-left: 10px;
+    color: #000;
+    outline: none;
+    font-size: 16px;
+    
+}
+.lable-upload{
+    background-color: #ccc;
+    border: 1px solid #817a7a;
+    border-radius: 5px;
+    text-align: center;
+    color: #580dad;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px 8px;
+}
+.text-img{
+    color: #fff;
+    margin-left: 6px;
+}
+.btn-add{
+    margin-left: 10px;
+}
+.btn-icon-add{
+    margin-left: 20px;
+    font-size: 32px;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: rgb(6, 76, 138);
+}
+.btn-icon-remove{
+    margin-left: 20px;
+    font-size: 30px;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: rgb(138, 37, 6);
+}
+.loadinggg{
+    font-size: 28px;
+}
+.answer-content{
+    display: flex;
+    margin: 0 40px 12px;
+    align-items: center;
+}
+.answers-input{
+    margin-left: 6px;
+}
+.answers-text{
+    width: 600px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+.plus-anwser{
+    font-size: 28px;
+    color: #fff;
+}
+.btn-an-remove{
+    border: 1px solid #ccc;
+    background-color: #882424;
+    border-radius: 50%;
+    font-size: 26px;
+    margin-left: 10px;
+    color: #fff;
+}
