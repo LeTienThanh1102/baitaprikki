@@ -237,6 +237,7 @@ function QuizQA() {
             reader.onerror = (error) => reject(error);
         });
     console.log('check', questions);
+    // console.log("selected", selectedQuiz);
     return (
         <div className="question-container">
             <div className="question-add-new">
