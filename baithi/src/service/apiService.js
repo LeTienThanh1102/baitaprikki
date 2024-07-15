@@ -84,7 +84,14 @@ const postCreateNewAnswerForQuestion = (description, correct_answer, question_id
     return axios.post('api/v1/answer', { description, correct_answer, question_id });
 };
 
+const putUpdateProfile = (username, userImage) => {
+    const data = new FormData();
+    data.append('username', username);
+    data.append('userImage', userImage);
+    return axios.post('api/v1/profile', data);
+};
+
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
     ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA,postAssignQuiz,
-    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion
+    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile
 }

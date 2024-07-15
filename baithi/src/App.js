@@ -9,6 +9,7 @@ import DashBoard from "./papes/admin/content/DashBoard";
 import ManageUser from "./papes/admin/content/manageUser/ManageUser";
 import ManageQuiz from "./papes/admin/content/quizz/ManageQuiz";
 import ManageQuestion from "./papes/admin/content/question/ManageQuestion";
+import Profile from "./papes/profile/Profile";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<Layout></Layout>}></Route>
           <Route path="/resgister" element={<Register></Register>}></Route>
           <Route path="/about" element={<About></About>}></Route>
+          <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/admin" element={<Admin></Admin>}>
             <Route index element={<DashBoard />}></Route>
             <Route path="manager" element={<ManageUser />}></Route>

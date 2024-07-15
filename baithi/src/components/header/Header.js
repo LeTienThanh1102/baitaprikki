@@ -65,7 +65,7 @@ function Header() {
                     </li>
                     <li onClick={handleCloseMenu}>
                       <IoSettingsOutline className="heeader-acc-icon"/>
-                      <Link className="header-acc-link" to="/setting">Cài đặt</Link>
+                      <Link className="header-acc-link" to="/profile"> Xem trang cá nhân</Link>
                     </li>
                     <li onClick={handleCloseMenu}>
                       <MdOutlineLogout className="heeader-acc-icon" />
