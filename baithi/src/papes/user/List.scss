@@ -1,0 +1,15 @@
+.quizz-list{
+    display: flex;
+    justify-content: space-between;
+    margin:70px 60px;
+    margin-top: 70px;
+    flex-wrap: wrap;
+}
+.quiz-item{
+    min-height: 500px;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}

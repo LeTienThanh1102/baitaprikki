@@ -94,7 +94,13 @@ const changePassword = (current_password, new_password) => {
     return axios.post('api/v1/change-password', { current_password, new_password });
 };
 
+const getListQuizbyUser = () => {
+    return axios.get('api/v1/quiz-by-participant');
+};
+
+
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
     ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA,postAssignQuiz,
-    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile,changePassword
+    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile,changePassword,
+    getListQuizbyUser,
 }
