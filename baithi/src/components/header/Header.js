@@ -61,11 +61,15 @@ function Header() {
                   <ul>
                     <li onClick={handleCloseMenu}>
                       <IoHomeOutline className="heeader-acc-icon" />
-                      <Link className="header-acc-link" to="/">Trang chủ</Link>
+                      <Link className="header-acc-link" to="/home">Trang chủ</Link>
                     </li>
                     <li onClick={handleCloseMenu}>
                       <IoSettingsOutline className="heeader-acc-icon"/>
                       <Link className="header-acc-link" to="/profile"> Xem trang cá nhân</Link>
+                    </li>
+                    <li onClick={handleCloseMenu}>
+                      <IoSettingsOutline className="heeader-acc-icon"/>
+                      <Link className="header-acc-link" to="/changepass"> Change Password</Link>
                     </li>
                     <li onClick={handleCloseMenu}>
                       <MdOutlineLogout className="heeader-acc-icon" />

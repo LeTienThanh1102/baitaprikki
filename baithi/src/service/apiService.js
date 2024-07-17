@@ -90,8 +90,11 @@ const putUpdateProfile = (username, userImage) => {
     data.append('userImage', userImage);
     return axios.post('api/v1/profile', data);
 };
+const changePassword = (current_password, new_password) => {
+    return axios.post('api/v1/change-password', { current_password, new_password });
+};
 
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
     ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA,postAssignQuiz,
-    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile
+    postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile,changePassword
 }
