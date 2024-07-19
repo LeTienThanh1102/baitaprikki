@@ -18,18 +18,18 @@ function SiderBar() {
     <div className="side-main">
       <Sidebar>
         <div
-          style={{ display: "flex", flexDirection: "column", height: "100vh"}}
+          style={{ display: "flex", flexDirection: "column", height: "100vh" }}
         >
           <div
             className="sidebar-header"
             onClick={() => {
-              navigate("/");
+              navigate("/home");
             }}
           >
             <p className="sidebar-text">Quản lí: </p>
           </div>
 
-          <div style={{ flex: 1, marginBottom: "32px"}}>
+          <div style={{ flex: 1, marginBottom: "32px" }}>
             <Menu>
               <SubMenu
                 label="Features"

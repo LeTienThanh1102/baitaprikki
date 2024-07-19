@@ -22,7 +22,7 @@ function Register() {
     }
     let res = await postRegister(email, username, password);
     if (res && res.EC === 0) {
-      navigate("/login");
+      navigate("/");
     }
     if (res && res.EC !== 0) {
       alert("Nhập sai account. Hãy tạo lại tài khoản");

@@ -13,6 +13,7 @@ function ListQuizzz() {
 
     const getQuizData = async () => {
         const res = await getListQuizbyUser();
+        console.log(res);
         if (res.EC === 0 && res) {
             setArrQuiz(res.DT);
         }
@@ -27,17 +28,17 @@ function ListQuizzz() {
                 arrQuiz.length > 0 &&
                 arrQuiz.map((item, index) => {
                     return (
-                        <div className="quiz-item">
-                            <div key={index} className="    " style={{ width: '18rem' }}>
+                        <div key={index} className="quiz-item">
+                            <div  className="    " style={{ width: '18rem' }}>
                                 <img src={`data:image/jpeg;base64,${item.image}`} className="card-img-top" alt="..." />
                                 <div className="card-body">
-                                    <h5 className="card-title">Quiz {index + 1}</h5>
+                                    <h5 className="card-title">Quiz {index + 1} :</h5>
                                     <p className="card-text">{item.description}</p>
                                     <button
                                         onClick={() =>
                                             navigate(`/quiz/${item.id}`, { state: { quizTitle: item.description } })
                                         }
-                                        className="btn btn-primary"
+                                        className="button-start"
                                     >
                                         Start Nowww
                                     </button>

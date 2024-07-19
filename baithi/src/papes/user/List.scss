@@ -1,15 +1,56 @@
 .quizz-list{
     display: flex;
-    justify-content: space-between;
-    margin:70px 60px;
+    // justify-content: space-between;
     margin-top: 70px;
     flex-wrap: wrap;
+    padding: 30px 80px;
+    background-color: #5c5959;
 }
 .quiz-item{
-    min-height: 500px;
+    min-height: 450px;
+    position: relative;
     max-width: 350px;
-    border: 1px solid #ccc;
+    border: 1px solid #929190;
     padding: 8px 12px;
     border-radius: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 40px;
+    margin-right: 50px;
+    background-color: #bbbab9;
+    box-shadow: 1px 1px 2px 2px #6b6969;
+}
+.card-img-top{
+    height: 220px;
+    margin-top: 20px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.card-title{
+    margin-top: 30px;
+    font-size: 24px;
+    color: #f30909;
+}
+.button-start{
+    bottom: 20px;
+    left: 30%;
+    padding: 6px 12px;
+    border: none;
+    outline: none;
+    position: absolute;
+    background-color: #f36709;
+    color: #fff;
+    border-radius: 8px;
+    &:hover{
+        padding: 8px 14px;
+    }
+}
+.card-text{
+    margin-top: 10px;
+    color: #f35f09;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 0 12px;
+    display:  -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
 }

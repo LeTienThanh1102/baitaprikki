@@ -12,6 +12,7 @@ import ManageQuestion from "./papes/admin/content/question/ManageQuestion";
 import Profile from "./papes/profile/Profile";
 import ChangePass from "./papes/changePass/ChangePass";
 import ListQuizzz from "./papes/user/ListQuizzz";
+import DetailQuiz from "./papes/user/DetailQuiz";
 function App() {
   return (
     <div className="App">
@@ -30,6 +31,7 @@ function App() {
             <Route path="manager-questions" element={<ManageQuestion />}></Route>
           </Route>
           <Route path="/program" element={<ListQuizzz></ListQuizzz>}></Route>
+          <Route path="/quiz/:id" element={<DetailQuiz />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

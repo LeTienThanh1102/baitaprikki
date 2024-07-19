@@ -98,9 +98,16 @@ const getListQuizbyUser = () => {
     return axios.get('api/v1/quiz-by-participant');
 };
 
+const getDataQuiz = (id) => {
+    return axios.get(`api/v1/questions-by-quiz?quizId=${id}`);
+};
+
+const postSubmitQuiz = (data) => {
+    return axios.post('api/v1/quiz-submit', { ...data });
+};
 
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
     ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA,postAssignQuiz,
     postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile,changePassword,
-    getListQuizbyUser,
+    getListQuizbyUser,getDataQuiz, postSubmitQuiz
 }
