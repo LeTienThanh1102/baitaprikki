@@ -5,7 +5,7 @@ import _ from 'lodash';
 import './Detail.scss';
 import Question from './Question';
 // import ModelResult from './ModelResult';
-// import RightContent from './Conent/RightContent';
+import RightContent from './RightContent';
 function DetailQuiz() {
     const params = useParams();
     const quizid = params.id;
@@ -181,15 +181,15 @@ function DetailQuiz() {
                 </div>
             </div>
 
-            {/* <div className="right-content">
+             <div className="right-content">
                 <RightContent dataquiz={dataquiz} handleFinish={handleFinish} setIndex={setIndex} />
             </div>
-            <ModelResult
+            {/* <ModelResult
                 show={isShowResult}
                 setShow={setShowResult}
                 dataModel={dataModel}
                 handleShowAnswer={handleShowAnswer}
-            /> */}
+            />  */}
         </div>
         </>
     );

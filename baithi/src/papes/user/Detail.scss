@@ -6,6 +6,7 @@
   padding-bottom: 30px;
   .left-content {
     width: 70%;
+    margin-right: 30px;
   }
   .right-content {
     border: 1px solid #000;
@@ -20,7 +21,6 @@
   text-shadow: 0px 0px 10px #da1fda;
   padding-bottom: 15px;
   border-bottom: 1px solid #ccc;
-  position: fixed;
   
 }
 .quiz-content {
@@ -29,7 +29,7 @@
   background-color: #47052e;
   border-radius: 10px;
   box-shadow: 3px 4px 3px 5px #5e094b;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 .question {
   margin: 4px;
@@ -77,15 +77,17 @@
 .name-question {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 10px;
 }
 .question-item {
   margin: 8px 12px;
   padding: 6px 13px;
   border-radius: 50%;
-  border: 1px solid #3b3838;
+  border: 1px solid #f76c6c;
   font-size: 16px;
   font-weight: 700;
+  color: #fff;
   cursor: pointer;
 
   &:hover {
