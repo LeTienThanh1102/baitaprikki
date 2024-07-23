@@ -1,5 +1,5 @@
 import './Detail.scss';
-// import CountDown from './CountDown';
+import CountDown from './CountDown';
 function RightContent({ dataquiz, handleFinish, setIndex }) {
     const onTimeUp = () => {
         handleFinish();
@@ -17,7 +17,7 @@ function RightContent({ dataquiz, handleFinish, setIndex }) {
     return (
         <div>
             <div className="main-timer">
-                {/* <CountDown onTimeUp={onTimeUp} /> */}
+                <CountDown onTimeUp={onTimeUp} />
             </div>
             <div className="name-question">
                 {dataquiz &&

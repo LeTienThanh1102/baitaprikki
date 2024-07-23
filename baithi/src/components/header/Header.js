@@ -21,8 +21,8 @@ function Header() {
     edit.current.classList.remove("active");
   }
   const handleLogout=()=>{
-    dispatch(logout());
     navigate('/');
+    dispatch(logout());
   }
   const handleClick = () => {
     edit.current.classList.toggle("active");
@@ -73,7 +73,7 @@ function Header() {
                     </li>
                     <li onClick={handleCloseMenu}>
                       <MdOutlineLogout className="heeader-acc-icon" />
-                      <Link className="header-acc-link" onClick={handleLogout}>
+                      <Link className="header-acc-link" to='/' onClick={handleLogout}>
                         LOGOUT
                       </Link>
                     </li>

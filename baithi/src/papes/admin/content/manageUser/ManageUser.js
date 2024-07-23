@@ -29,7 +29,6 @@ function ManageUser() {
     };
     const fecthlistUeserWithPaginate = async (page) => {
         let res = await getUserPaginate(page, limit);
-        console.log(res);
         if (res.EC === 0) {
             setListUser(res.DT.users);
             setPageCount(res.DT.totalPages);

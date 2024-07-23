@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
 import './List.scss';
-import { getListQuizbyUser } from '../../service/apiService';
+import { getAllDataQuizForAdmin, getListQuizbyUser } from '../../service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/Header';
 function ListQuizzz() {
     const [arrQuiz, setArrQuiz] = useState([]);
     const navigate = useNavigate();
+    const [option, setOption]=useState('');
 
     useEffect(() => {
         getQuizData();
-    }, []);
+    }, [option]);
 
     const getQuizData = async () => {
-        const res = await getListQuizbyUser();
-        console.log(res);
-        if (res.EC === 0 && res) {
+        const res = await getAllDataQuizForAdmin();
+        if(option===''){
             setArrQuiz(res.DT);
         }
-        console.log(res);
+        else if (res.EC === 0 && res) {
+            const easyQuizzes = res.DT.filter(quiz => quiz.difficulty === option);
+                setArrQuiz(easyQuizzes);
+        }
     };
-
     return (
         <>
         <Header />
@@ -47,6 +49,14 @@ function ListQuizzz() {
                         </div>
                     );
                 })}
+        <div className='option-level'>
+            <select class="form-select1" onChange={(e) => setOption(e.target.value)} >
+                <option selected value="">Tất cả</option>
+                <option value="EASY" >EASY/ Dễ</option>
+                <option value="MEDIUM" >MEDIUM/ Trung bình</option>
+                <option value="HARD">HARD / Khó</option>
+            </select>
+        </div>
         </div>
         </>
     );

@@ -25,7 +25,6 @@ function DetailQuiz() {
 
     const fetchQuestion = async () => {
         let res = await getDataQuiz(quizid);
-        console.log("res chuan", res);
         if (res && res.EC === 0) {
             let raw = res.DT;
             let data = _.chain(raw)

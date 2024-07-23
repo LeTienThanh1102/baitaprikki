@@ -74,8 +74,6 @@ function ManageQuestion() {
             questionClone = questionClone.filter((item) => item.id !== id);
             setQuestions(questionClone);
         }
-
-        console.log('type', type, id);
     };
     const handleAddRemoveAnswer = (type, anId, quesId) => {
         let questionClone = _.cloneDeep(questions);

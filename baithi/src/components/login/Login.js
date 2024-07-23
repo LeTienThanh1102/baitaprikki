@@ -27,7 +27,7 @@ const Login = () => {
       <div
         className="login-back"
         onClick={() => {
-          navigate("/");
+          navigate("/home");
         }}
       >
         <button className="btn-login-back"> Back-Home</button>

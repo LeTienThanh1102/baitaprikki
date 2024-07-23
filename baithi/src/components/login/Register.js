@@ -21,10 +21,10 @@ function Register() {
       return;
     }
     let res = await postRegister(email, username, password);
-    if (res && res.EC === 0) {
-      navigate("/");
+    if (res && res.EC === 0 ) {
+      navigate("/home");
     }
-    if (res && res.EC !== 0) {
+    else if (res && res.EC !== 0) {
       alert("Nhập sai account. Hãy tạo lại tài khoản");
     }
   };
@@ -42,7 +42,7 @@ function Register() {
         <button
           className="btn-login"
           onClick={() => {
-            navigate("/login");
+            navigate("/");
           }}
         >
           {" "}

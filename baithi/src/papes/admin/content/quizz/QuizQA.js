@@ -107,8 +107,6 @@ function QuizQA() {
             questionClone = questionClone.filter((item) => item.id !== id);
             setQuestions(questionClone);
         }
-
-        console.log('type', type, id);
     };
     const handleAddRemoveAnswer = (type, anId, quesId) => {
         let questionClone = _.cloneDeep(questions);
@@ -121,7 +119,6 @@ function QuizQA() {
             };
             let index = questionClone.findIndex((item) => item.id === quesId);
             questionClone[index].answers.push(newAnswer);
-            console.log(questionClone);
             setQuestions(questionClone);
         }
         if (type === 'REMOVE') {
@@ -225,9 +222,6 @@ function QuizQA() {
             toast.success(resss.EM);
             fecthQuizwithQA();
         }
-
-        //     toast.success('Create question  and answers successed!!!');
-        //     setQuestions(initQuestions );
     };
     const toBase64 = (file) =>
         new Promise((resolve, reject) => {
