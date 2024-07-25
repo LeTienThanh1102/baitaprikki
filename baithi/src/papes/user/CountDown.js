@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-function CountDown({ onTimeUp }) {
-  const [count, setCount] = useState(120);
+function CountDown({handleFinish}) {
+  const [count, setCount] = useState(5);
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
   }
   useEffect(() => {
     if (count === 0) {
-      onTimeUp();
       setShow(true);
       return;
     }
@@ -32,11 +31,15 @@ function CountDown({ onTimeUp }) {
       .filter((v, i) => v !== "00" || i > 0)
       .join(":");
   };
+  const handleResult=()=>{
+    handleFinish();
+    setShow(false);
+  }
   return (
     <div>
       <div className="count-container">{toHHMMSS(count)}</div>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose}  centered>
           <Modal.Header closeButton>
             <Modal.Title>Ending Test</Modal.Title>
           </Modal.Header>
@@ -45,7 +48,7 @@ function CountDown({ onTimeUp }) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" onClick={handleResult}>
               Xem kết quả
             </Button>
           </Modal.Footer>

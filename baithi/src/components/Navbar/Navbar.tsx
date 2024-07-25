@@ -6,8 +6,9 @@ import { AiFillSun } from "react-icons/ai";
 import { AiOutlineComment } from "react-icons/ai";
 import { AiOutlineOpenAI } from "react-icons/ai";
 import { useSelector } from 'react-redux';
-const Navbar = () => {
-  const account=useSelector((state)=>state.user.account);
+import { RootState } from '../../redux/store';
+const Navbar: React.FC = () => {
+  const account=useSelector((state :RootState)=>state.user.account);
   const navbar = [
     {
       Icon:IoHome,

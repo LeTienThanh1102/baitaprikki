@@ -1,7 +1,6 @@
 // import { useSelector } from 'react-redux';
 // import video from '../../assets/img/hero.mp4';
 import "./Home.scss";
-import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 function HoemPage() {
   // const isAuthenticated = useSelector((state) => state.user.isAuthenticated);

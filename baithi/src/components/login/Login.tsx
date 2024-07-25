@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../service/apiService";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/authSlice";
+interface LoginRespone{
+  EC: number,
+  DT: any
+}
 const Login = () => {
   const navigate = useNavigate();
   const dispatch=useDispatch();
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const handleLogin = async(e) => {
+  const [email, setEmail] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
+  const handleLogin = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let res=await postLogin(email, pass);
+    let res : LoginRespone=await postLogin(email, pass);
     console.log(res);
     if(res && res.EC===0){
       navigate('/home');
@@ -53,7 +57,7 @@ const Login = () => {
         <div className="login__society">
           <form onSubmit={(e) => handleLogin(e)}>
             <div className="mb-3">
-              <label for="exampleFormControlInput1" className="form-label">
+              <label  className="form-label">
                 Email address
               </label>
               <input
@@ -64,7 +68,7 @@ const Login = () => {
               />
             </div>
             <div className="mb-3">
-              <label for="exampleFormControlInput1" className="form-label">
+              <label className="form-label">
                 Password
               </label>
               <input

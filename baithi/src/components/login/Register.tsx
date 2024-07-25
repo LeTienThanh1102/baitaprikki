@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 import { postRegister } from "../../service/apiService";
+interface RegisterRespone{
+  EC: number;
+}
 function Register() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const validateEmail = (email) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const validateEmail = (email:string) => {
     return String(email)
       .toLowerCase()
       .match(
@@ -20,7 +23,7 @@ function Register() {
       alert("Error Format");
       return;
     }
-    let res = await postRegister(email, username, password);
+    const res :RegisterRespone = await postRegister(email, username, password);
     if (res && res.EC === 0 ) {
       navigate("/home");
     }

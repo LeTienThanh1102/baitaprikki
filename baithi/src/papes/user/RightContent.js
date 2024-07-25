@@ -1,10 +1,6 @@
 import './Detail.scss';
 import CountDown from './CountDown';
 function RightContent({ dataquiz, handleFinish, setIndex }) {
-    const onTimeUp = () => {
-        handleFinish();
-    };
-
     const getClassQuestion = (question) => {
         if (question && question.answers.length > 0) {
             let isUnAnswer = question.answers.every((a) => a.isSelected === false);
@@ -17,7 +13,7 @@ function RightContent({ dataquiz, handleFinish, setIndex }) {
     return (
         <div>
             <div className="main-timer">
-                <CountDown onTimeUp={onTimeUp} />
+                <CountDown handleFinish={handleFinish} />
             </div>
             <div className="name-question">
                 {dataquiz &&

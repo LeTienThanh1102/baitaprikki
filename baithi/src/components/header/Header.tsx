@@ -8,24 +8,29 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineLogout } from "react-icons/md";
 import { logout } from "../../redux/authSlice";
-function Header() {
+import { RootState } from "../../redux/store";
+const Header: React.FC = () => {
   const dispatch=useDispatch();
-  const isAuthencation=useSelector((state)=>state.user.isAuthenticated);
-  const account=useSelector((state)=>state.user.account);
+  const isAuthencation=useSelector((state: RootState)=>state.user.isAuthenticated);
+  const account=useSelector((state: RootState)=>state.user.account);
   const navigate=useNavigate();
-  const edit=useRef();
+  const edit=useRef<HTMLDivElement | null>(null);
   const handleNavigateLogin=()=>{
     navigate('/');
   }
   const handleCloseMenu=()=>{
-    edit.current.classList.remove("active");
+    if(edit.current){
+      edit.current.classList.remove("active");
+    }
   }
   const handleLogout=()=>{
     navigate('/');
     dispatch(logout());
   }
   const handleClick = () => {
-    edit.current.classList.toggle("active");
+    if(edit.current){
+      edit.current.classList.toggle("active");
+    }
   };
   return (
     <div className="header">

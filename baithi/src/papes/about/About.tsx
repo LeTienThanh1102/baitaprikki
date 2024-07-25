@@ -3,9 +3,17 @@ import "./About.scss";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/Navbar/Navbar";
-import Food from "../../assets/img/doanngo.png";
-import dienmay from "../../assets/img/dienmay.png";
-import chatApp from "../../assets/img/chatApp.png";
+// import * as Food from "../../assets/img/doanngo.png";
+// import * as dienmay from "../../assets/img/dienmay.png";
+// import * as chatApp from "../../assets/img/chatApp.png";
+interface ProjectPro{
+  name: string,
+  tech: string,
+  desc: string,
+  image:any, 
+  github:string,
+  web: string
+}
 const About = () => {
   const navigate = useNavigate();
   const social = [
@@ -68,12 +76,12 @@ const About = () => {
     },
   ];
 
-  const project = [
+  const project:ProjectPro[] = [
     {
       name: "Shoppeee Expresss",
       tech: "ReactJs, SCSS",
       desc: "Đây là sản phẩm đầu tiên mình làm nên mới có giao diện cơ bản, chưa có chức năng gì cả",
-      img: chatApp,
+      image: '',
       github: "https://github.com/tuyentopro123/Hiking-concept-web-template",
       web: "https://hiking-concept-web-template.vercel.app/",
     },
@@ -81,7 +89,7 @@ const About = () => {
       name: "Điện máy xanh xanhhh",
       tech: "ReactJs, SCSS",
       desc: "Đây là template mình làm ra dựa theo trang chủ của Thế giới di động",
-      img: dienmay,
+      image: 'dienmay',
       github: "https://github.com/LeTienThanh1102/SupperMarket",
       web: "https://letienthanh1102.github.io/SupperMarket/",
     },
@@ -89,7 +97,7 @@ const About = () => {
       name: "Food Good",
       tech: "ReactJS, SCSS, Firebase",
       desc: "Đây là sản phẩm mình làm hướng dẫn của Youtube channel. và có một số chức năng cơ bản",
-      img: Food,
+      image: 'Food',
       web: "https://web-do-an-letienthanh1102.vercel.app/",
       github: "https://github.com/LeTienThanh1102/good_food",
     },
@@ -149,7 +157,7 @@ const About = () => {
                   <h2>{`${index + 1}. ${item.name}`}</h2>
                   <p>{`- Công nghệ đã dùng: ${item.tech}`}</p>
                   <p>{`- ${item.desc}`}</p>
-                  <img src={item.img} alt="" />
+                  <img src={item.image} alt="" />
                   <form action="">
                     <label>- Link github: </label>
                     <a href={item.github} target="_blank">

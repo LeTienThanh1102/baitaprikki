@@ -3,22 +3,33 @@ import './List.scss';
 import { getAllDataQuizForAdmin, getListQuizbyUser } from '../../service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/Header';
+
+interface Quiz {
+    id: string;
+    description: string;
+    image: string;
+    difficulty: string;
+}
+interface QuizRespone{
+    EC: number,
+    DT:Quiz[],
+}
 function ListQuizzz() {
-    const [arrQuiz, setArrQuiz] = useState([]);
+    const [arrQuiz, setArrQuiz] = useState<Quiz[]>([]);
     const navigate = useNavigate();
-    const [option, setOption]=useState('');
+    const [option, setOption]=useState<string>('');
 
     useEffect(() => {
         getQuizData();
     }, [option]);
 
     const getQuizData = async () => {
-        const res = await getAllDataQuizForAdmin();
+        const res : QuizRespone = await getAllDataQuizForAdmin();
         if(option===''){
             setArrQuiz(res.DT);
         }
         else if (res.EC === 0 && res) {
-            const easyQuizzes = res.DT.filter(quiz => quiz.difficulty === option);
+            const easyQuizzes = res.DT.filter((quiz) => quiz.difficulty === option);
                 setArrQuiz(easyQuizzes);
         }
     };
@@ -50,7 +61,7 @@ function ListQuizzz() {
                     );
                 })}
         <div className='option-level'>
-            <select class="form-select1" onChange={(e) => setOption(e.target.value)} >
+            <select className="form-select1" onChange={(e) => setOption(e.target.value)} >
                 <option selected value="">Tất cả</option>
                 <option value="EASY" >EASY/ Dễ</option>
                 <option value="MEDIUM" >MEDIUM/ Trung bình</option>

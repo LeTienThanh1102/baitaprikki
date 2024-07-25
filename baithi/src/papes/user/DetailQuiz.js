@@ -4,7 +4,7 @@ import { getDataQuiz, postSubmitQuiz } from '../../service/apiService';
 import _ from 'lodash';
 import './Detail.scss';
 import Question from './Question';
-// import ModelResult from './ModelResult';
+import ModelResult from './ModelResult';
 import RightContent from './RightContent';
 function DetailQuiz() {
     const params = useParams();
@@ -183,12 +183,12 @@ function DetailQuiz() {
              <div className="right-content">
                 <RightContent dataquiz={dataquiz} handleFinish={handleFinish} setIndex={setIndex} />
             </div>
-            {/* <ModelResult
+            <ModelResult
                 show={isShowResult}
                 setShow={setShowResult}
                 dataModel={dataModel}
                 handleShowAnswer={handleShowAnswer}
-            />  */}
+            /> 
         </div>
         </>
     );
