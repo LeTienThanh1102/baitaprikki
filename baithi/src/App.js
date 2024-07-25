@@ -13,6 +13,7 @@ import Profile from "./papes/profile/Profile";
 import ChangePass from "./papes/changePass/ChangePass";
 import ListQuizzz from "./papes/user/ListQuizzz";
 import DetailQuiz from "./papes/user/DetailQuiz";
+import Ranking from "./papes/ranking/Ranking";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
           <Route path="/home" element={<Layout></Layout>}></Route>
           <Route path="/resgister" element={<Register></Register>}></Route>
           <Route path="/about" element={<About></About>}></Route>
+          <Route path="/ranking" element={<Ranking></Ranking>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/changepass" element={<ChangePass></ChangePass>}></Route>
           <Route path="/admin" element={<Admin></Admin>}>

@@ -338,6 +338,9 @@ function QuizQA() {
                         </button>
                     </div>
                 )}
+                {questions && questions.length===0 && (
+                    <div style={{display:"flex", justifyContent:"center", alignItems:"center", color:"red"}}>Chưa có câu hỏi nào</div>
+                )}
             </div>
         </div>
     );

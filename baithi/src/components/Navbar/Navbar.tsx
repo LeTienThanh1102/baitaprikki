@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     {
       Icon:AiOutlineComment,
       h4:"Kết quả",
-      path:'/result'
+      path:'/ranking'
     },
     {
       Icon:AiOutlineOpenAI, 
@@ -41,11 +41,6 @@ const Navbar: React.FC = () => {
       Icon:AiFillSun,
       h4:"Manager",
       path:'/admin'
-    },
-    {
-      Icon:AiOutlineComment,
-      h4:"Kết quả",
-      path:'/result'
     },
     {
       Icon:AiOutlineOpenAI, 

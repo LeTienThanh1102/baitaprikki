@@ -51,6 +51,7 @@ function AddNewQuiz() {
     if (res && res.EC === 0) {
       setListQuiz(res.DT);
       toast.success(res.EM);
+      fetchQuiz();
       setName("");
       setDes("");
       setLevel("");

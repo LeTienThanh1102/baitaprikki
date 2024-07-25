@@ -104,9 +104,12 @@ const getDataQuiz = (id:string) => {
 const postSubmitQuiz = (data:{}) => {
     return axios.post('api/v1/quiz-submit', { ...data });
 };
+const getHistory = () => {
+    return axios.get('api/v1/history');
+};
 
 export {postRegister, postLogin,getDashBoard,putUpdateUser,getUserPaginate,getAllUser,DeleteUser,postCreatUser
     ,getAllDataQuizForAdmin,postCreateNewQuiz,putUpdateQuizz,deleteQuiz,getQuizwithQA,postUpsertQA,postAssignQuiz,
     postCreateNewQuestionForQuiz,postCreateNewAnswerForQuestion,putUpdateProfile,changePassword,
-    getListQuizbyUser,getDataQuiz, postSubmitQuiz
+    getListQuizbyUser,getDataQuiz, postSubmitQuiz,getHistory
 }
