@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     },
     {
       Icon:AiFillSun,
-      h4:"Bài Thi",
+      h4:"Luyện tập",
       path:'/program'
     },
     {

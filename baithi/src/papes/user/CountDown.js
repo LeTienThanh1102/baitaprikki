@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 function CountDown({handleFinish}) {
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(120);
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);

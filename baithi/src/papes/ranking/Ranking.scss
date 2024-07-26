@@ -1,0 +1,27 @@
+.ranking-container{
+    // background-color: rgb(27, 27, 27);
+    min-height: 100vh;
+    background-image: url(https://img.freepik.com/premium-vector/golden-podium-first-place-with-laurel-wreath-gold-rank-stage-red-curtain-background_200341-292.jpg);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+.ranking-title{
+    margin-top: 90px;
+    padding: 4px 12px;
+    background-color: rgb(102, 18, 3);
+    box-shadow: 1px 2px 3px 3px #eb2222;
+    color: #dbd8d8;
+    border-radius: 10px;
+}
+.table-result{
+    margin-top: 30px;
+    .table{
+        --bs-table-bg: #7c0606;
+        box-shadow: 1px 2px 3px 3px #e74f4f;
+        --bs-table-color:#f5f2f2;
+    }
+}

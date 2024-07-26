@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getHistory } from '../../service/apiService';
 import moment from 'moment';
 import Header from '../../components/header/Header';
+import './Ranking.scss';
 function Ranking() {
     const [listHistory, setListHistory] = useState([]);
     useEffect(() => {
@@ -31,40 +32,46 @@ function Ranking() {
     return (
         <div>
             <Header />
-            <div className='table-result' style={{ width:"80%", margin:"70px auto"}}>
-                <table className="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Quiz Name</th>
-                            <th scope="col">Total Question</th>
-                            <th scope="col">Total Correct</th>
-                            <th scope="col">Point</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listHistory &&
-                            listHistory.length > 0 &&
-                            listHistory.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.total_questions}</td>
-                                        <td>{item.total_correct}</td>
-                                        <td>{item.diemm}</td>
-                                        <td>{item.date}</td>
-                                    </tr>
-                                );
-                            })}
-                        {listHistory && listHistory.length === 0 && (
+            <div className='ranking-container'>
+                <div className='ranking-title'>
+                    <h2> Bảng xếp hạng của bạn</h2>
+                </div>
+                <div className='table-result' style={{ width:"80%"}}>
+                    <table className="table table-hover table-bordered">
+                        <thead>
                             <tr>
-                                <td colSpan={4}>Not Found Data</td>
+                                <th scope="col">ID</th>
+                                <th scope="col">Quiz Name</th>
+                                <th scope="col">Total Question</th>
+                                <th scope="col">Total Correct</th>
+                                <th scope="col">Point</th>
+                                <th>Date</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {listHistory &&
+                                listHistory.length > 0 &&
+                                listHistory.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.total_questions}</td>
+                                            <td>{item.total_correct}</td>
+                                            <td>{item.diemm}</td>
+                                            <td>{item.date}</td>
+                                        </tr>
+                                    );
+                                })}
+                            {listHistory && listHistory.length === 0 && (
+                                <tr>
+                                    <td colSpan={4}>Not Found Data</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+
+                </div>
 
             </div>
 
