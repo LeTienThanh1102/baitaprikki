@@ -9,6 +9,7 @@ Xây dựng 1 trang web làm bài thi.
 
 - Đăng nhập, đăng ký.
 - Chỉnh sửa thông tin cá nhân(tên, ảnh đại diện, ...).
+- Đổi mật khẩu
 
 1. Admin: 
 	- Xem danh sách User.
@@ -20,6 +21,7 @@ Xây dựng 1 trang web làm bài thi.
 	- Chỉnh sửa thông tin cá nhân.
 	- Xem điểm.
 	- Lịch sử làm bài của mình.
+	- Xem các câu hỏi đã hoàn thành và so sánh đáp án.
 4. Công nghệ sử dụng:
 	- FE: ReactJS, SCSS, redux.
 	- BE: NodeJs - data lấy trên mạng và phần này lấy trên mạng(Do chưa học về NodeJS).
