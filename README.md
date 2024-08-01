@@ -1,6 +1,8 @@
 Web_Lam_bai_thi
 
 Mô tả: Chủ yếu thực hiên bên FE, còn BA còn yếu.
+Tài khoản cho admin: 
+- email: user@gmail.com    pass: 12345
 
 Xây dựng 1 trang web làm bài thi.
 - Chức năng:
