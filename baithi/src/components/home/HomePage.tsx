@@ -1,9 +1,13 @@
 // import { useSelector } from 'react-redux';
 // import video from '../../assets/img/hero.mp4';
+import { useSelector } from "react-redux";
 import "./Home.scss";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../../redux/store";
 function HoemPage() {
-  // const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated: boolean = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
   const navigate = useNavigate();
 
   return (
@@ -29,14 +33,19 @@ function HoemPage() {
             diagnostic test to check if infected or not.
           </div>
           <div className="home_send">
-            <button className="btn-click" onClick={() => navigate("/login")}>
-              {" "}
-              TEST NOW
-            </button>
-            {/* {isAuthenticated === false ? (
-                        ) : (
-                            <button onClick={() => navigate('/user')}> Start Now</button>
-                        )} */}
+            {isAuthenticated === false ? (
+              <div>
+                <button
+                  className="btn-click"
+                  onClick={() => navigate("/")}
+                >
+                  {" "}
+                  TEST NOW
+                </button>{" "}
+              </div>
+            ) : (
+              <button  className="btn-click" onClick={() => navigate("/user")}> Start Now</button>
+            )}
           </div>
         </div>
       </div>
