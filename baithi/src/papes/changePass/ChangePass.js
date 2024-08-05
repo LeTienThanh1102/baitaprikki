@@ -14,7 +14,7 @@ function ChangePass() {
             return;
         }
         let res = await changePassword(pass, newPass);
-        console.log(res);
+        // console.log
         if (res && res.EC === 0) {
             toast.success("Change password Success !!!!");
             setNewPass(''); setPass('');

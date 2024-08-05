@@ -13,8 +13,9 @@ function Layout() {
             <div className="layout-body">
                 <Navbar></Navbar>
                 <div className="layout-content">
-                    <HoemPage></HoemPage>
-                    <Information></Information>
+                    {/* lỗi typing, nếu không truyền thêm props chỉ cần gọi <HomePage/>*/}
+                    <HoemPage />
+                    <Information />
                 </div>
 
             </div>

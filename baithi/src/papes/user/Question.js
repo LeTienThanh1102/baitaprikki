@@ -1,8 +1,8 @@
-import _ from 'lodash';
+// lodash
 import './Detail.scss';
 import { IoIosClose, IoIosCheckmark } from 'react-icons/io';
 function Question({ data, index, handleCheckBox, isShowAnswer }) {
-    if (_.isEmpty(data)) {
+    if (!data && !data.length) {
         return <></>;
     }
 

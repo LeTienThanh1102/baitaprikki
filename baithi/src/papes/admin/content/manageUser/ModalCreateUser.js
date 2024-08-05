@@ -4,38 +4,31 @@ import Modal from 'react-bootstrap/Modal';
 import { FiPlusCircle } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { postCreatUser } from '../../../../service/apiService';
+import { validateEmail } from '../../../../util/validate';
+import { Role } from '../../../../util/user';
 
 function ModalCreateUser({ show, setShow, fecthlistUeser }) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
-    const [username, setUername] = useState('');
-    const [anh, setAnh] = useState('');
-    const [role, setRole] = useState('USER');
+    const [username, setUername] = useState('');  
+    const [image, setImage] = useState('');
+    const [role, setRole] = useState(Role.USER);
     const [prevew, setreview] = useState('');
     const handleClose = () => {
         setShow(false);
         setEmail('');
         setPass('');
         setRole('');
-        setAnh('');
+        setImage('');
         setUername('');
         setreview('');
     };
     const handleUpload = (e) => {
         if (e.target && e.target.files && e.target.files[0]) {
             setreview(URL.createObjectURL(e.target.files[0]));
-            setAnh(e.target.files[0]);
-        } else {
-            // setreview('')
-        }
-    };
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            );
-    };
+            setImage(e.target.files[0]);
+        } 
+    }
     const handleSubmited = async () => {
         const isValidEmail = validateEmail(email);
         if (!isValidEmail) {
@@ -46,8 +39,7 @@ function ModalCreateUser({ show, setShow, fecthlistUeser }) {
             toast.error('Invalid Password');
             return;
         }
-        let data = await postCreatUser(email, pass, username, role, anh);
-        console.log(data);
+        let data = await postCreatUser(email, pass, username, role, image);
         if (data && data.EC === 0) {
             toast.success(data.EM);
             await fecthlistUeser();
@@ -101,8 +93,8 @@ function ModalCreateUser({ show, setShow, fecthlistUeser }) {
                         <div className="col-md-4">
                             <label className="form-label">Role</label>
                             <select className="form-select" onChange={(e) => setRole(e.target.value)}>
-                                <option value="USER">USER</option>
-                                <option value="ADMIN"> ADMIN</option>
+                                <option value={Role.USER}>USER</option>
+                                <option value={Role.ADMIN}> ADMIN</option>
                             </select>
                         </div>
                         <div className="col-md-12">

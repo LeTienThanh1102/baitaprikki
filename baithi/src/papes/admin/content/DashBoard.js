@@ -11,7 +11,6 @@ function DashBoard() {
     }, []);
     const fetchdata = async () => {
         let res = await getDashBoard();
-        console.log(res);
         if (res && res.EC === 0) {
             setDataOver(res.DT);
             let qz = 0,
@@ -52,11 +51,16 @@ function DashBoard() {
                     <div className="dash-item" style={{ background: '#f0e5a8' }}>
                         <span className="item-1">Total Quizzz:</span>
                         <span className="item-2">
-                            {dataOver && dataOver.others && dataOver.others.countQuiz ? (
-                                <>{dataOver.others.countQuiz}</>
-                            ) : (
-                                <>0</>
-                            )}
+                            {/* 
+                            <>{dataOver && dataOver.others && dataOver.others.countQuiz ?
+                                dataOver.others.countQuiz
+                                : 0
+                            }</> */}
+                            {dataOver && dataOver.others && dataOver.others.countQuiz ? 
+                                dataOver.others.countQuiz
+                             : 
+                                0
+                            }
                         </span>
                     </div>
                     <div className="dash-item" style={{ background: '#7aa3f0' }}>

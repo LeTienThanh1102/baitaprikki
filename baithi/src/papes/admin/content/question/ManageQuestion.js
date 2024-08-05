@@ -7,8 +7,9 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { LuBadgePlus } from 'react-icons/lu';
 import { BiMinus } from 'react-icons/bi';
 import { v4 as uuidv4 } from 'uuid';
-import _, { values } from 'lodash';
-import { toast } from 'react-toastify';
+// lodash khá nặng, xem xét xem có thay thế deepCopy và isEmpty bằng cách khác không.
+// biến nào ko sử dụng thì nên xóa đi.
+import { toast, ToastContainer } from 'react-toastify';
 import {
     getAllDataQuizForAdmin,
     postCreateNewQuestionForQuiz,
@@ -70,13 +71,11 @@ function ManageQuestion() {
             setQuestions([...questions, newquestion]);
         }
         if (type === 'REMOVE') {
-            let questionClone = _.cloneDeep(questions);
-            questionClone = questionClone.filter((item) => item.id !== id);
-            setQuestions(questionClone);
+            setQuestions(questions.filter((item) => item.id !== id));
         }
     };
     const handleAddRemoveAnswer = (type, anId, quesId) => {
-        let questionClone = _.cloneDeep(questions);
+        let questionClone = [...questions];
 
         if (type === 'ADD') {
             const newAnswer = {
@@ -97,7 +96,7 @@ function ManageQuestion() {
 
     const handleOnchange = (type, questionId, value) => {
         if (type === 'QUESTION') {
-            let questionClone = _.cloneDeep(questions);
+            let questionClone =[...questions];;
             let index = questionClone.findIndex((item) => item.id === questionId);
             if (index > -1) {
                 questionClone[index].description = value;
@@ -106,7 +105,7 @@ function ManageQuestion() {
         }
     };
     const handleOnchangeFile = (questionId, e) => {
-        let questionClone = _.cloneDeep(questions);
+        let questionClone =[...questions];
         let index = questionClone.findIndex((item) => item.id === questionId);
         if (index > -1 && e.target && e.target.files && e.target.files[0]) {
             questionClone[index].imageFile = e.target.files[0];
@@ -115,7 +114,7 @@ function ManageQuestion() {
         }
     };
     const handleAnswerQuestion = (type, anId, questionId, value) => {
-        let questionClone = _.cloneDeep(questions);
+        let questionClone = [...questions];
         let index = questionClone.findIndex((item) => item.id === questionId);
         if (index > -1) {
             questionClone[index].answers = questionClone[index].answers.map((answer) => {
@@ -131,11 +130,10 @@ function ManageQuestion() {
             });
             setQuestions(questionClone);
         }
-        if (type === 'QUESTION') {
-        }
+       
     };
     const handleSumitQuestion = async () => {
-        if (_.isEmpty(selectedQuiz)) {
+        if (!selectedQuiz || !selectedQuiz.value) {
             toast.error('Please choose a Quiz !!!');
             return;
         }
@@ -289,6 +287,7 @@ function ManageQuestion() {
                     </div>
                 )}
             </div>
+            <ToastContainer />
         </div>
     );
 }

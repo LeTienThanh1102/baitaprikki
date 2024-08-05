@@ -13,6 +13,7 @@ interface Quiz {
 interface QuizRespone{
     EC: number,
     DT:Quiz[],
+    // ec ??? dt ?? tránh đặt tên viết tắt, khó hiểu.
 }
 function ListQuizzz() {
     const [arrQuiz, setArrQuiz] = useState<Quiz[]>([]);

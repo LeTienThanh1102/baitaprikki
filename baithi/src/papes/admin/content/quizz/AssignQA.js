@@ -71,8 +71,8 @@ function AssignQA() {
                         handleAssign();
                     }}
                 >
-                    {' '}
-                    Assign{' '}
+                    {/* bỏ {' '}  */}
+                    Assign
                 </button>
             </div>
         </div>

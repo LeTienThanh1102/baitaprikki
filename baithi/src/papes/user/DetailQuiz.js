@@ -23,6 +23,7 @@ function DetailQuiz() {
         fetchQuestion();
     }, [quizid]);
 
+    // với các func như này nên chuyển sang hook cho dễ quản lý, đọc code.
     const fetchQuestion = async () => {
         let res = await getDataQuiz(quizid);
         if (res && res.EC === 0) {
@@ -104,7 +105,7 @@ function DetailQuiz() {
 
             payload.answers = answers;
             let res = await postSubmitQuiz(payload);
-            console.log('res', res);
+          
             if (res && res.EC === 0) {
                 setIsSubmitQuiz(true);
                 setDataModel({
@@ -137,6 +138,7 @@ function DetailQuiz() {
                     setDataQuiz(dataQuizClone);
                 }
             } else {
+                // Nên return lỗi cụ thể nếu xác định được, tránh viết chung chung ntn.
                 alert('Something Wrongs......');
             }
         }

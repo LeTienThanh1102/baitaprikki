@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { putUpdateQuizz } from "../../../../service/apiService";
 import { toast } from "react-toastify";
 import { FiPlusCircle } from "react-icons/fi";
-import _ from "lodash";
+
 
 function ModelUpdateQuiz({ show, setShow, dataUpdate, fetchQuiz }) {
   const [name, setName] = useState("");
@@ -18,7 +18,8 @@ function ModelUpdateQuiz({ show, setShow, dataUpdate, fetchQuiz }) {
   };
 
   useEffect(() => {
-    if (!_.isEmpty(dataUpdate)) {
+    // dataUpdate là array, có (!dataUpdate || !dataUpdate.lenght) === !isEmpty, tránh dùng lodash
+    if (!dataUpdate || !dataUpdate.length) {
       setDes(dataUpdate.description);
       setLevel(dataUpdate.difficulty);
       setName(dataUpdate.name);

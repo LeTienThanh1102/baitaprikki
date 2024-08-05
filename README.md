@@ -2,11 +2,14 @@ Web_Lam_bai_thi
 
 Mô tả: Chủ yếu thực hiên bên FE, còn BA còn yếu.
 
+Cung cấp tài khoản cho admin:
+- email: user@gmail.com   pass: 12345
+
 Xây dựng 1 trang web làm bài thi.
 - Chức năng:
-
 - Đăng nhập, đăng ký.
 - Chỉnh sửa thông tin cá nhân(tên, ảnh đại diện, ...).
+- Đổi mật khẩu
 
 1. Admin: 
 	- Xem danh sách User.

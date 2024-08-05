@@ -5,8 +5,9 @@ import { FiPlusCircle } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 import { putUpdateUser } from '../../../../service/apiService';
+import useUserManager from './useUserManage';
 
-function ModelUpdate({ show, setShow, fecthlistUeser, dataUpdate, resetUpdate }) {
+function ModelUpdate({ show, setShow, dataUpdate,fetchListUserWithPaginate, resetUpdate }) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [username, setUername] = useState('');
@@ -40,7 +41,7 @@ function ModelUpdate({ show, setShow, fecthlistUeser, dataUpdate, resetUpdate })
         let data = await putUpdateUser(dataUpdate.id, username, role, anh);
         if (data && data.EC === 0) {
             toast.success(data.EM);
-            await fecthlistUeser();
+            await fetchListUserWithPaginate();
             handleClose();
         }
         if (data && data.EC !== 0) {

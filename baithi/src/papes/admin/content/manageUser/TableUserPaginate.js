@@ -1,11 +1,15 @@
 import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
+import useUserManager from './useUserManage';
 
-function TableUserPaginate({ listUser, handleUpdateShow, handleDeleteShow, fecthlistUeserWithPaginate, pageCount }) {
+function TableUserPaginate({handleUpdateShow, handleDeleteShow, pageCount }) {
+    const {listUser, fetchListUserWithPaginate } = useUserManager();
+
     const handlePageClick = (event) => {
-        fecthlistUeserWithPaginate(+event.selected + 1);
+        fetchListUserWithPaginate(event.selected + 1);
         console.log(`User requested page number ${event.selected}`);
     };
+
     return (
         <div>
             <table className="table table-hover table-bordered">
@@ -21,28 +25,26 @@ function TableUserPaginate({ listUser, handleUpdateShow, handleDeleteShow, fecth
                 <tbody>
                     {listUser &&
                         listUser.length > 0 &&
-                        listUser.map((item, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{item.username}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.role}</td>
-                                    <td>
-                                        <button className="btn btn-secondary">View</button>
-                                        <button className="btn btn-warning mx-3" onClick={() => handleUpdateShow(item)}>
-                                            Update
-                                        </button>
-                                        <button className="btn btn-danger" onClick={() => handleDeleteShow(item)}>
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                        listUser.map((item, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{item.username}</td>
+                                <td>{item.email}</td>
+                                <td>{item.role}</td>
+                                <td>
+                                    <button className="btn btn-secondary">View</button>
+                                    <button className="btn btn-warning mx-3" onClick={() => handleUpdateShow(item)}>
+                                        Update
+                                    </button>
+                                    <button className="btn btn-danger" onClick={() => handleDeleteShow(item)}>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     {listUser && listUser.length === 0 && (
                         <tr>
-                            <td colSpan={4}>Not Found Data</td>
+                            <td colSpan={5}>Not Found Data</td>
                         </tr>
                     )}
                 </tbody>

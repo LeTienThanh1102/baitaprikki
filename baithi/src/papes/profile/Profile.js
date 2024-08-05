@@ -23,8 +23,6 @@ const Profile = () => {
     if (e.target && e.target.files && e.target.files[0]) {
       setreview(URL.createObjectURL(e.target.files[0]));
       setImage(e.target.files[0]);
-    } else {
-      // setreview('')
     }
   };
 
@@ -38,6 +36,7 @@ const Profile = () => {
       }
     }
   }, [account]);
+  //ok
   // EDIT
   const handleChange = (item) => {
     document
