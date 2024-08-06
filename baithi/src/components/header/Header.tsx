@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const navigate=useNavigate();
   const edit=useRef<HTMLDivElement | null>(null);
   const handleNavigateLogin=()=>{
-    navigate('/');
+    navigate('/login');
   }
   const handleCloseMenu=()=>{
     if(edit.current){
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
   return (
     <div className="header">
       <div className="header_logo">
-        <Link to="/home" className="header_logo_text">
+        <Link to="/" className="header_logo_text">
           <h2 className="header_name" >TIENTHANH</h2>
         </Link>
       </div>
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                     </li>
                     <li onClick={handleCloseMenu}>
                       <MdOutlineLogout className="heeader-acc-icon" />
-                      <Link className="header-acc-link" to='/' onClick={handleLogout}>
+                      <Link className="header-acc-link" to='/login' onClick={handleLogout}>
                         LOGOUT
                       </Link>
                     </li>

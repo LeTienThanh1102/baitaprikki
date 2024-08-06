@@ -14,25 +14,28 @@ import ChangePass from "./papes/changePass/ChangePass";
 import ListQuizzz from "./papes/user/ListQuizzz";
 import DetailQuiz from "./papes/user/DetailQuiz";
 import Ranking from "./papes/ranking/Ranking";
+import HoemPage from "./components/home/HomePage";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login></Login>}></Route>
-          <Route path="/home" element={<Layout></Layout>}></Route>
-          <Route path="/resgister" element={<Register></Register>}></Route>
-          <Route path="/about" element={<About></About>}></Route>
-          <Route path="/ranking" element={<Ranking></Ranking>}></Route>
-          <Route path="/profile" element={<Profile></Profile>}></Route>
-          <Route path="/changepass" element={<ChangePass></ChangePass>}></Route>
-          <Route path="/admin" element={<Admin></Admin>}>
+          <Route path="/" element={<Layout></Layout>}>
+            <Route index element={<HoemPage />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="resgister" element={<Register />}></Route>
+            <Route path="about" element={<About />}></Route>
+            <Route path="ranking" element={<Ranking />}></Route>
+            <Route path="profile" element={<Profile />}></Route>
+            <Route path="changepass" element={<ChangePass/>}></Route>
+          </Route>
+          <Route path="/admin" element={<Admin />}>
             <Route index element={<DashBoard />}></Route>
             <Route path="manager" element={<ManageUser />}></Route>
             <Route path="manager-quizzer" element={<ManageQuiz />}></Route>
             <Route path="manager-questions" element={<ManageQuestion />}></Route>
           </Route>
-          <Route path="/program" element={<ListQuizzz></ListQuizzz>}></Route>
+          <Route path="/program" element={<ListQuizzz />}></Route>
           <Route path="/quiz/:id" element={<DetailQuiz />}></Route>
         </Routes>
       </BrowserRouter>

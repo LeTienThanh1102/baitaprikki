@@ -104,8 +104,6 @@ const About = () => {
   ];
   return (
     <>
-      <Header></Header>
-      <Navbar></Navbar>
       <section className="about">
         <div className="about__banner"></div>
         <div className="about__container">

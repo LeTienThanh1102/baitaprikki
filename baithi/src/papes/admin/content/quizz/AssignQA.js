@@ -28,7 +28,6 @@ function AssignQA() {
     };
     const fetchUser = async () => {
         let res = await getAllUser();
-        // console.log(res);
         if (res && res.EC === 0) {
             let user = res.DT.map((item) => {
                 return {

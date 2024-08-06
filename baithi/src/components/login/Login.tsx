@@ -18,7 +18,7 @@ const Login = () => {
     let res : LoginRespone=await postLogin(email, pass);
     console.log(res);
     if(res && res.EC===0){
-      navigate('/home');
+      navigate('/');
       dispatch(updateUser(res))
 
     }
@@ -31,7 +31,7 @@ const Login = () => {
       <div
         className="login-back"
         onClick={() => {
-          navigate("/home");
+          navigate("/");
         }}
       >
         <button className="btn-login-back"> Back-Home</button>

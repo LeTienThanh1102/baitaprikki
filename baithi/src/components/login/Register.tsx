@@ -19,7 +19,7 @@ function Register() {
     }
     const res :RegisterRespone = await postRegister(email, username, password);
     if (res && res.EC === 0 ) {
-      navigate("/home");
+      navigate("/login");
     }
     else if (res && res.EC !== 0) {
       alert("Nhập sai account. Hãy tạo lại tài khoản");

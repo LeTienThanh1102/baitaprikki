@@ -2,20 +2,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { DeleteUser } from '../../../../service/apiService';
 import { toast } from 'react-toastify';
-function ModelDelete({ show, setShow, dataDelete, fecthlistUeser }) {
+function ModelDelete({ show, setShow, dataDelete, fetchListUserWithPaginate }) {
     const handleClose = () => setShow(false);
     const handleSubmitDelete = async () => {
         let data = await DeleteUser(dataDelete.id);
         if (data && data.EC === 0) {
             toast.success(data.EM);
-            fecthlistUeser();
+            fetchListUserWithPaginate(1);
             handleClose();
         }
-        if (data && data.EC !== 0) {
-            toast.error(data.EM);
-            handleClose();
-        }
-        setShow(false);
     };
     return (
         <>

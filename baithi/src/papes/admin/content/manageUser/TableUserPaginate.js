@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 import useUserManager from './useUserManage';
 
 function TableUserPaginate({handleUpdateShow, handleDeleteShow, pageCount }) {
-    const {listUser, fetchListUserWithPaginate } = useUserManager();
-
+    const {listUser,fetchListUserWithPaginate } = useUserManager();
     const handlePageClick = (event) => {
-        fetchListUserWithPaginate(event.selected + 1);
+        fetchListUserWithPaginate(+event.selected + 1);
         console.log(`User requested page number ${event.selected}`);
     };
 
@@ -30,7 +29,7 @@ function TableUserPaginate({handleUpdateShow, handleDeleteShow, pageCount }) {
                                 <td>{index + 1}</td>
                                 <td>{item.username}</td>
                                 <td>{item.email}</td>
-                                <td>{item.role}</td>
+                                <td>{item.role ==1 ? 'USER':'ADMIN'}</td>
                                 <td>
                                     <button className="btn btn-secondary">View</button>
                                     <button className="btn btn-warning mx-3" onClick={() => handleUpdateShow(item)}>

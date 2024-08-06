@@ -1,5 +1,6 @@
 .changePass{
     margin-top: 60px;
+    width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,11 +8,15 @@
 }
 .chang-pass{
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .change-title{
     margin-top: 90px;
     padding-left: 20px;
     color: rgb(165, 62, 14);
+   text-align: center;
     text-transform: uppercase;
     h2{
         font-size: 22px;

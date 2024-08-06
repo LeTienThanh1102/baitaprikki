@@ -23,7 +23,7 @@ function SiderBar() {
           <div
             className="sidebar-header"
             onClick={() => {
-              navigate("/home");
+              navigate("/");
             }}
           >
             <p className="sidebar-text">Quản lí: </p>

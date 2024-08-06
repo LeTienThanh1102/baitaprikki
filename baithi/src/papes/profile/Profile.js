@@ -100,7 +100,6 @@ const Profile = () => {
   return (
     <>
       <ToastContainer></ToastContainer>
-      <Header />
       <section className="setting">
         <div className="setting__container">
           <h1>Cài Đặt</h1>

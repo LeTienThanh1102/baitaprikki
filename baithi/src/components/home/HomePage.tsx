@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import "./Home.scss";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../redux/store";
+import Information from "../infomation/Information";
 function HoemPage() {
   const isAuthenticated: boolean = useSelector(
     (state: RootState) => state.user.isAuthenticated
@@ -49,6 +50,7 @@ function HoemPage() {
           </div>
         </div>
       </div>
+      <Information />
     </>
   );
 }

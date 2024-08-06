@@ -8,7 +8,6 @@
   background-color: #2e2d2d;
 }
 .setting__container {
-  padding: 12px;
   h1 {
     font-size: 32px;
     color: #d43d0f;
@@ -43,7 +42,7 @@
 
     input {
       border: none;
-      width: 700px;
+      width: 550px;
       background-color: transparent !important;
       border-bottom: 1px solid #c7610d;
       font-size: 16px;
@@ -73,7 +72,7 @@
   flex: 1 1;
   button {
     font-size: 16px;
-    padding: 10px 16px;
+    padding: 4px 16px;
     text-transform: capitalize;
     background-color: transparent;
     border: 1px solid #ccc;

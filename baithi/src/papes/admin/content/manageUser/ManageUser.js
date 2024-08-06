@@ -8,23 +8,25 @@ import ModalCreateUser from './ModalCreateUser';
 import useUserManager from './useUserManage';
 
 function ManageUser() {
+    
     const [show, setShow] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState({});
+    const [dataDelete, setDataDelete] = useState({});
     const { 
-        listUser, 
-        pageCount, 
-        dataUpdate, 
-        dataDelete, 
-        setListUser, 
-        setDataUpdate, 
-        setDataDelete, 
-        fetchListUser, 
-        fetchListUserWithPaginate, 
-        resetUpdate 
+        listUser,
+        pageCount,
+        setListUser,
+        fetchListUser,
+        fetchListUserWithPaginate,
+        createUser,
     } = useUserManager();
-    
-   
+
+    const resetUpdate = () => {
+        setDataUpdate({});
+    };
+  
     const handleShow = () => {
         setShow(true);
     };
@@ -56,19 +58,17 @@ function ManageUser() {
                         pageCount={pageCount}
                     />
                 </div>
-                <ModalCreateUser show={show} setShow={setShow} fetchListUser={fetchListUser} />
+                <ModalCreateUser show={show} setShow={setShow} />
                 <ModelUpdate
                     show={showUpdate}
                     setShow={setShowUpdate}
                     dataUpdate={dataUpdate}
-                    fetchListUserWithPaginate={fetchListUserWithPaginate}
                     resetUpdate={resetUpdate}
                 />
                 <ModelDelete
                     show={showDelete}
                     setShow={setShowDelete}
                     dataDelete={dataDelete}
-                    fetchListUser={fetchListUser}
                 />
             </div>
         </div>

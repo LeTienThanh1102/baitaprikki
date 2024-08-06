@@ -6,14 +6,18 @@ import { toast } from 'react-toastify';
 import { postCreatUser } from '../../../../service/apiService';
 import { validateEmail } from '../../../../util/validate';
 import { Role } from '../../../../util/user';
+import useUserManager from './useUserManage';
 
-function ModalCreateUser({ show, setShow, fecthlistUeser }) {
+function ModalCreateUser({ show, setShow, fetchListUserWithPaginate }) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [username, setUername] = useState('');  
     const [image, setImage] = useState('');
     const [role, setRole] = useState(Role.USER);
     const [prevew, setreview] = useState('');
+    const {createUser}=useUserManager();
+
+    
     const handleClose = () => {
         setShow(false);
         setEmail('');
@@ -39,17 +43,11 @@ function ModalCreateUser({ show, setShow, fecthlistUeser }) {
             toast.error('Invalid Password');
             return;
         }
-        let data = await postCreatUser(email, pass, username, role, image);
+        let data = await createUser(email, pass, username, role, image);
         if (data && data.EC === 0) {
-            toast.success(data.EM);
-            await fecthlistUeser();
+            fetchListUserWithPaginate(1);
             handleClose();
         }
-        if (data && data.EC !== 0) {
-            toast.error(data.EM);
-            handleClose();
-        }
-        setShow(false);
     };
     return (
         <>

@@ -4,16 +4,16 @@ import Modal from 'react-bootstrap/Modal';
 import { FiPlusCircle } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
-import { putUpdateUser } from '../../../../service/apiService';
 import useUserManager from './useUserManage';
 
-function ModelUpdate({ show, setShow, dataUpdate,fetchListUserWithPaginate, resetUpdate }) {
+function ModelUpdate({ show, setShow, dataUpdate, resetUpdate }) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [username, setUername] = useState('');
-    const [anh, setAnh] = useState('');
+    const [image, setImage] = useState('');
     const [role, setRole] = useState('');
     const [prevew, setreview] = useState('');
+    const {editUpdateUser}=useUserManager();
     const handleClose = () => {
         setShow(false);
         resetUpdate();
@@ -23,7 +23,7 @@ function ModelUpdate({ show, setShow, dataUpdate,fetchListUserWithPaginate, rese
             setEmail(dataUpdate.email);
             setRole(dataUpdate.role);
             setUername(dataUpdate.username);
-            setAnh('');
+            setImage('');
             if (dataUpdate.image) {
                 setreview(`data:image/jpeg;base64,${dataUpdate.image}`);
             }
@@ -32,23 +32,14 @@ function ModelUpdate({ show, setShow, dataUpdate,fetchListUserWithPaginate, rese
     const handleUpload = (e) => {
         if (e.target && e.target.files && e.target.files[0]) {
             setreview(URL.createObjectURL(e.target.files[0]));
-            setAnh(e.target.files[0]);
-        } else {
-            // setreview('')
+            setImage(e.target.files[0]);
         }
     };
     const handleSubmited = async () => {
-        let data = await putUpdateUser(dataUpdate.id, username, role, anh);
+        let data = await editUpdateUser(dataUpdate.id, username, role, image);
         if (data && data.EC === 0) {
-            toast.success(data.EM);
-            await fetchListUserWithPaginate();
             handleClose();
         }
-        if (data && data.EC !== 0) {
-            toast.error(data.EM);
-            handleClose();
-        }
-        setShow(false);
     };
     return (
         <>
@@ -130,3 +121,4 @@ function ModelUpdate({ show, setShow, dataUpdate,fetchListUserWithPaginate, rese
     );
 }
 export default ModelUpdate;
+

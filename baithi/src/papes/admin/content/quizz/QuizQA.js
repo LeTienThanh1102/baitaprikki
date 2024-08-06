@@ -159,7 +159,6 @@ function QuizQA() {
         qclone[i].imageFile = await toBase64(qclone[i].imageFile);
       }
     }
-    //loi khong update đc
     fecthQuizwithQA();
     let resss = await postUpsertQA({
       quizId: selectedQuiz.value,
@@ -177,8 +176,6 @@ function QuizQA() {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-  // bỏ console.log
-  // console.log("selected", selectedQuiz);
   return (
     <div className="question-container">
       <div className="question-add-new">

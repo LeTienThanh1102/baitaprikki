@@ -25,7 +25,6 @@ function ChangePass() {
     };
     return (
         <>
-        <Header />
         <ToastContainer />
         <div className='change-title'>
             <h2>Change Password For User</h2>

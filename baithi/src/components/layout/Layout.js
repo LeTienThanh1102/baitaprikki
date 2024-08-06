@@ -6,16 +6,15 @@ import HoemPage from "../home/HomePage";
 import './Layout.scss';
 import Information from "../infomation/Information";
 import Footer from "../footer/Footer";
+import { Outlet } from "react-router-dom";
 function Layout() {
     return ( 
         <div className="layout" style={{backgroundColor:"#1b1718"}}>
-            <Header></Header>
+            <Header />
             <div className="layout-body">
-                <Navbar></Navbar>
+                <Navbar />
                 <div className="layout-content">
-                    {/* lỗi typing, nếu không truyền thêm props chỉ cần gọi <HomePage/>*/}
-                    <HoemPage />
-                    <Information />
+                    <Outlet />
                 </div>
 
             </div>

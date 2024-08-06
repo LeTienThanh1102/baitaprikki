@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
     {
       Icon:IoHome,
       h4:"Home",
-      path:'/home'
+      path:'/'
     },
     {
       Icon:AiFillSun,
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
     {
       Icon:IoHome,
       h4:"Home",
-      path:'/home'
+      path:'/'
     },
     {
       Icon:AiFillSun,
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="navbarr" style={{marginTop: "70px"}}>
-      {account.role==="ADMIN"?
+      {account.role =='2'?
       <div className="navbar__container">
           {navbar2.map((item, index) =>(
             <Link 
