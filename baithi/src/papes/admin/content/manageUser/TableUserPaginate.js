@@ -2,8 +2,7 @@ import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
 import useUserManager from './useUserManage';
 
-function TableUserPaginate({handleUpdateShow, handleDeleteShow, pageCount }) {
-    const {listUser,fetchListUserWithPaginate } = useUserManager();
+function TableUserPaginate({listUser,handleUpdateShow, handleDeleteShow, pageCount,fetchListUserWithPaginate }) {
     const handlePageClick = (event) => {
         fetchListUserWithPaginate(+event.selected + 1);
         console.log(`User requested page number ${event.selected}`);

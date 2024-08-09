@@ -3,11 +3,6 @@ import { store } from '../redux/store';
 const instance = axios.create({
   baseURL: "http://localhost:8081/",
 });
-interface ApiResponse<T = any> {
-  EC: number;
-  DT: T;
-  [key: string]: any; // Other properties if necessary
-}
 
 instance.interceptors.request.use(
   function (config) {

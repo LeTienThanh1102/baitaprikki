@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import _ from 'lodash';
 import useUserManager from './useUserManage';
 
-function ModelUpdate({ show, setShow, dataUpdate, resetUpdate }) {
+function ModelUpdate({ show, setShow, dataUpdate, resetUpdate,fetchListUserWithPaginate }) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [username, setUername] = useState('');
@@ -38,6 +38,7 @@ function ModelUpdate({ show, setShow, dataUpdate, resetUpdate }) {
     const handleSubmited = async () => {
         let data = await editUpdateUser(dataUpdate.id, username, role, image);
         if (data && data.EC === 0) {
+            fetchListUserWithPaginate(1);
             handleClose();
         }
     };

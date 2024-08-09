@@ -1,29 +1,24 @@
-import React, { useState, useEffect, FormEvent } from "react";
 import "./Login.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../service/apiService";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/authSlice";
-interface LoginRespone{
-  EC: number,
-  DT: any
-}
+import { DataType } from "../../type/DataType";
+import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
-  const handleLogin = async(e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
-    let res : LoginRespone=await postLogin(email, pass);
-    console.log(res);
-    if(res && res.EC===0){
-      navigate('/');
-      dispatch(updateUser(res))
-
+    let res: DataType = await postLogin(email, pass);
+    if (res && res.EC === 0) {
+      navigate("/");
+      dispatch(updateUser(res));
     }
-    if(res && res.EC!==0){
-      alert('Nhập sai mật khẩu'); 
+    if (res && res.EC !== 0) {
+      alert("Nhập sai mật khẩu");
     }
   };
   return (
@@ -57,9 +52,7 @@ const Login = () => {
         <div className="login__society">
           <form onSubmit={(e) => handleLogin(e)}>
             <div className="mb-3">
-              <label  className="form-label">
-                Email address
-              </label>
+              <label className="form-label">Email address</label>
               <input
                 type="email"
                 className="form-control"
@@ -68,9 +61,7 @@ const Login = () => {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">
-                Password
-              </label>
+              <label className="form-label">Password</label>
               <input
                 type="password"
                 className="form-control"

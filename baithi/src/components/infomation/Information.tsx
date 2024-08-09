@@ -1,7 +1,13 @@
 import "./Information.scss";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+interface Option {
+  id: number;
+  titile: string;
+  img: string;
+  option: string[];
+}
 function Information() {
-  const data = [
+  const data:Option[] = [
     {
       id: 1,
       titile: "TẠO BÀI THI TRẮC NGHIỆM ONLINE MIỄN PHÍ VÀ DỄ SỬ DỤNG",

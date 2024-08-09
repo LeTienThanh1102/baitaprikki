@@ -2,15 +2,33 @@ import './DashBoard.scss';
 import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 import { getDashBoard } from '../../../service/apiService';
 import { useEffect, useState } from 'react';
+import { DataType } from '../../../type/DataType';
+interface DashBoardProps {
+    users: {
+        total: number;
+    };
+    others: {
+        countQuiz: number;
+        countQuestions: number;
+        countAnswers: number;
+    };
+}
+interface DataProps{
+    name: string;
+    Qz?: number;
+    Qs?: number;
+    An?: number;
+};
+
 function DashBoard() {
-    const [dataOver, setDataOver] = useState([]);
-    const [dataChart, setDataChart] = useState([]);
+    const [dataOver, setDataOver] = useState<DashBoardProps|null>(null);
+    const [dataChart, setDataChart] = useState<DataProps[]>([]);
 
     useEffect(() => {
         fetchdata();
     }, []);
     const fetchdata = async () => {
-        let res = await getDashBoard();
+        let res:DataType = await getDashBoard();
         if (res && res.EC === 0) {
             setDataOver(res.DT);
             let qz = 0,
@@ -19,7 +37,7 @@ function DashBoard() {
             qz = res?.DT?.others?.countQuiz ?? 0;
             qs = res?.DT?.others?.countQuestions ?? 0;
             an = res?.DT?.others?.countAnswers ?? 0;
-            const data = [
+            const data:DataProps[] = [
                 {
                     name: 'Quizzes',
                     Qz: qz,

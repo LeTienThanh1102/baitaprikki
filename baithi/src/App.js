@@ -9,7 +9,7 @@ import DashBoard from "./papes/admin/content/DashBoard";
 import ManageUser from "./papes/admin/content/manageUser/ManageUser";
 import ManageQuiz from "./papes/admin/content/quizz/ManageQuiz";
 import ManageQuestion from "./papes/admin/content/question/ManageQuestion";
-import Profile from "./papes/profile/Profile";
+import Profile from "./papes/profile/Profile.tsx";
 import ChangePass from "./papes/changePass/ChangePass";
 import ListQuizzz from "./papes/user/ListQuizzz";
 import DetailQuiz from "./papes/user/DetailQuiz";

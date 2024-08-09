@@ -1,17 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { getDataQuiz, postSubmitQuiz } from '../../service/apiService';
-import _ from 'lodash';
 import './Detail.scss';
 import Question from './Question';
 import ModelResult from './ModelResult';
 import RightContent from './RightContent';
+import { DataType } from '../../type/DataType';
+interface Answer {
+    id: number;
+    description: string;
+    isSelected: boolean;
+    isCorrect: boolean;
+}
+
+interface QuestionData {
+    questionId: number;
+    questionDes: string;
+    image: string | null;
+    answers: Answer[];
+}
+
+// interface QuizDataModel {
+//     countCorrect: number;
+//     countTotal: number;
+//     quizData: any[]; // Define the exact type if possible
+// }
 function DetailQuiz() {
-    const params = useParams();
-    const quizid = params.id;
+    const params = useParams<{ id: string }>();
+    const quizid:string|undefined = params.id;
     const location = useLocation();
 
-    const [dataquiz, setDataQuiz] = useState([]);
+    const [dataquiz, setDataQuiz] = useState<QuestionData[]>([]);
     const [index, setIndex] = useState(0);
     const [isSubmitQuiz, setIsSubmitQuiz] = useState(false);
     const [isShowAnswer, setIsShowAnswer] = useState(false);
@@ -28,29 +47,33 @@ function DetailQuiz() {
         let res = await getDataQuiz(quizid);
         if (res && res.EC === 0) {
             let raw = res.DT;
-            let data = _.chain(raw)
-                .groupBy('id')
-                .map((value, key) => {
-                    let answers = [];
-                    let questionDes,
-                        image = null;
-
-                    value.forEach((item, index) => {
-                        if (index === 0) {
-                            questionDes = item.description;
-                            image = item.image;
-                        }
-                        item.answers.isSelected = false;
-                        item.answers.isCorrect = false;
-                        answers.push(item.answers);
+            let data = raw.reduce((acc: QuestionData[], item: any) => {
+                let questionIndex = acc.findIndex(q => q.questionId === item.id);
+                if (questionIndex === -1) {
+                    acc.push({
+                        questionId: item.id,
+                        questionDes: item.description,
+                        image: item.image,
+                        answers: [{
+                            id: item.answers.id,
+                            description: item.answers.description,
+                            isSelected: false,
+                            isCorrect: false
+                        }]
                     });
-                    answers = _.orderBy(answers, ['id'], ['asc']);
-                    return { questionId: key, answers, questionDes, image };
-                })
-                .value();
+                } else {
+                    acc[questionIndex].answers.push({
+                        id: item.answers.id,
+                        description: item.answers.description,
+                        isSelected: false,
+                        isCorrect: false
+                    });
+                }
+                return acc;
+            }, []);
             setDataQuiz(data);
         }
-    };
+    }
 
     const handlePrev = () => {
         if (index - 1 < 0) {
@@ -64,47 +87,32 @@ function DetailQuiz() {
         }
     };
 
-    const handleCheckBox = (answerId, questionId) => {
-        let dataClone = _.cloneDeep(dataquiz);
-        let question = dataClone.find((item) => +item.questionId === +questionId);
-        if (question && question.answers) {
-            let b = question.answers.map((item) => {
-                if (item.id === answerId) {
-                    item.isSelected = !item.isSelected;
-                }
-                return item;
-            });
-            question.answers = b;
-        }
-        let index = dataClone.findIndex((item) => +item.questionId === +questionId);
-        if (index > -1) {
-            dataClone[index] = question;
-            setDataQuiz(dataClone);
-        }
+    const handleCheckBox = (answerId: number, questionId: number) => {
+        const updatedDataQuiz = dataquiz.map(question => {
+            if (question.questionId === questionId) {
+                return {
+                    ...question,
+                    answers: question.answers.map(answer =>
+                        answer.id === answerId
+                            ? { ...answer, isSelected: !answer.isSelected }
+                            : answer
+                    )
+                };
+            }
+            return question;
+        });
+        setDataQuiz(updatedDataQuiz);
     };
-
     const handleFinish = async () => {
         console.log('check data before submit', dataquiz);
         let payload = {
             quizId: quizid,
-            answers: [],
+            answers: dataquiz.map(question => ({
+                questionId: question.questionId,
+                userAnswerId: question.answers.filter(answer => answer.isSelected).map(answer => answer.id)
+            }))
         };
-        let answers = [];
-        if (dataquiz && dataquiz.length > 0) {
-            dataquiz.forEach((question) => {
-                let questionId = question.questionId;
-                let userAnswerId = [];
-                question.answers.forEach((item) => {
-                    if (item.isSelected === true) {
-                        userAnswerId.push(item.id);
-                    }
-                });
-
-                answers.push({ questionId: questionId, userAnswerId: userAnswerId });
-            });
-
-            payload.answers = answers;
-            let res = await postSubmitQuiz(payload);
+            let res:DataType = await postSubmitQuiz(payload);
           
             if (res && res.EC === 0) {
                 setIsSubmitQuiz(true);
@@ -114,35 +122,28 @@ function DetailQuiz() {
                     quizData: res.DT.quizData,
                 });
                 setShowResult(true);
-                if (res.DT && res.DT.quizData) {
-                    let dataQuizClone = _.cloneDeep(dataquiz);
-                    let a = res.DT.quizData;
-                    for (let q of a) {
-                        for (let i = 0; i < dataQuizClone.length; i++) {
-                            if (+q.questionId === +dataQuizClone[i].questionId) {
-                                //update answer
-                                let newAnswers = [];
-                                for (let j = 0; j < dataQuizClone[i].answers.length; j++) {
-                                    let s = q.systemAnswers.find(
-                                        (item) => +item.id === +dataQuizClone[i].answers[j].id,
-                                    );
-                                    if (s) {
-                                        dataQuizClone[i].answers[j].isCorrect = true;
-                                    }
-                                    newAnswers.push(dataQuizClone[i].answers[j]);
-                                }
-                                dataQuizClone[i].answers = newAnswers;
-                            }
-                        }
+                const updatedDataQuiz = dataquiz.map(question => {
+                    const matchedQuizData = res.DT.quizData.find((q: any) => q.questionId === question.questionId);
+                    if (matchedQuizData) {
+                        return {
+                            ...question,
+                            answers: question.answers.map(answer => ({
+                                ...answer,
+                                isCorrect: !!matchedQuizData.systemAnswers.find((sysAns: any) => sysAns.id === answer.id)
+                            }))
+                        };
                     }
-                    setDataQuiz(dataQuizClone);
-                }
+                    return question;
+                });
+    
+                setDataQuiz(updatedDataQuiz);
+
             } else {
                 // Nên return lỗi cụ thể nếu xác định được, tránh viết chung chung ntn.
                 alert('Something Wrongs......');
             }
-        }
-    };
+        };
+
     const handleShowAnswer = () => {
         if (!isSubmitQuiz) return;
         setIsShowAnswer(true);

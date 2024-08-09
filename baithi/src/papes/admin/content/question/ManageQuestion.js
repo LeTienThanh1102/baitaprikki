@@ -7,8 +7,6 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { LuBadgePlus } from 'react-icons/lu';
 import { BiMinus } from 'react-icons/bi';
 import { v4 as uuidv4 } from 'uuid';
-// lodash khá nặng, xem xét xem có thay thế deepCopy và isEmpty bằng cách khác không.
-// biến nào ko sử dụng thì nên xóa đi.
 import { toast, ToastContainer } from 'react-toastify';
 import {
     getAllDataQuizForAdmin,

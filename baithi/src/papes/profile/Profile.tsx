@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import "./Profile.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { putUpdateProfile, putUpdateUser } from "../../service/apiService";
 import { ToastContainer, toast } from "react-toastify";
-import _ from "lodash";
 import "./Profile.scss";
-import Header from "../../components/header/Header";
 import { FiPlusCircle } from 'react-icons/fi';
 import 'react-toastify/dist/ReactToastify.css';
-import { updateUser } from "../../redux/authSlice";
-
+import { RootState } from "../../redux/store";
+import { DataType } from "../../type/DataType";
+interface SettingItem {
+  id: string;
+  field: string;
+  value: string;
+  type: string;
+}
 const Profile = () => {
-  const [email, setEmail] = useState("");
-  const [username, setUername] = useState("");
-  const [image, setImage] = useState("");
-  const [address, setAddress] = useState("");
-  const [prevew, setreview] = useState("");
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState<string>("");
+  const [username, setUername] = useState<string>("");
+  const [image, setImage] = useState<File|string>("");
+  const [address, setAddress] = useState<string>("");
+  const [prevew, setreview] = useState<string>("");
 
-  const account = useSelector((state) => state.user.account);
-  const handleChangeUpload = (e) => {
-    if (e.target && e.target.files && e.target.files[0]) {
-      setreview(URL.createObjectURL(e.target.files[0]));
-      setImage(e.target.files[0]);
-    }
-  };
+  const account = useSelector((state:RootState) => state.user.account);
 
   useEffect(() => {
-    if (account && !_.isEmpty(account)) {
+    if (account && account) {
       setEmail(account.email);
       setUername(account.username);
       setImage("");
@@ -36,24 +33,34 @@ const Profile = () => {
       }
     }
   }, [account]);
+  const handleChangeUpload = (e:ChangeEvent<HTMLInputElement>) => {
+    if (e.target && e.target.files && e.target.files[0]) {
+      setreview(URL.createObjectURL(e.target.files[0]));
+      setImage(e.target.files[0]);
+    }
+  };
   //ok
   // EDIT
-  const handleChange = (item) => {
-    document
-      .querySelector(`.setting__infor__item__button.${item.id}`)
-      .classList.add("active");
-    document.getElementById(item.id).disabled = false;
-    document.getElementById(item.id).focus();
+  const handleChange = (item:SettingItem) => {
+    document.querySelector(`.setting__infor__item__button.${item.id}`)?.classList.add("active");
+    const inputElement = document.getElementById(item.id) as HTMLInputElement;
+    if (inputElement) {
+      inputElement.disabled = false;
+      inputElement.focus();
+    }
   };
 
   // CLOSE
-  const handleClose = (item) => {
+  const handleClose = (item:SettingItem) => {
     document
       .querySelector(`.setting__infor__item__button.${item.id}`)
-      .classList.remove("active");
-    document.getElementById(item.id).disabled = true;
+      ?.classList.remove("active");
+      const inputElement = document.getElementById(item.id) as HTMLInputElement;
+      if (inputElement) {
+        inputElement.disabled = true;
+      }
   };
-  const setting = [
+  const setting:SettingItem[] = [
     {
       id: "username",
       field: "Họ tên",
@@ -75,7 +82,7 @@ const Profile = () => {
   ];
 
   // SETTING INPUT
-  const handleChangeInput = (e, item) => {
+  const handleChangeInput = (e:ChangeEvent<HTMLInputElement>, item:SettingItem) => {
     console.log(`Input changed for ${item.id}: ${e.target.value}`);
     if (item.id === "username") {
       setUername(e.target.value);
@@ -89,7 +96,7 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
-    let res = await putUpdateProfile(username, image);
+    let res:DataType = await putUpdateProfile(username, image);
     console.log(res);
         if (res && res.EC === 0) {
             toast.success("Update Profile Success");

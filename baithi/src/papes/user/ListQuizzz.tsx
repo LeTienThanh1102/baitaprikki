@@ -3,17 +3,13 @@ import './List.scss';
 import { getAllDataQuizForAdmin, getListQuizbyUser } from '../../service/apiService';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/Header';
+import { DataType } from '../../type/DataType';
 
 interface Quiz {
     id: string;
     description: string;
     image: string;
     difficulty: string;
-}
-interface QuizRespone{
-    EC: number,
-    DT:Quiz[],
-    // ec ??? dt ?? tránh đặt tên viết tắt, khó hiểu.
 }
 function ListQuizzz() {
     const [arrQuiz, setArrQuiz] = useState<Quiz[]>([]);
@@ -25,12 +21,12 @@ function ListQuizzz() {
     }, [option]);
 
     const getQuizData = async () => {
-        const res : QuizRespone = await getAllDataQuizForAdmin();
+        const res : DataType = await getAllDataQuizForAdmin();
         if(option===''){
             setArrQuiz(res.DT);
         }
         else if (res.EC === 0 && res) {
-            const easyQuizzes = res.DT.filter((quiz) => quiz.difficulty === option);
+            const easyQuizzes = res.DT.filter((quiz:Quiz) => quiz.difficulty === option);
                 setArrQuiz(easyQuizzes);
         }
     };

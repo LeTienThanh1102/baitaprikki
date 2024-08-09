@@ -3,29 +3,37 @@ import { getHistory } from '../../service/apiService';
 import moment from 'moment';
 import Header from '../../components/header/Header';
 import './Ranking.scss';
+import { DataType } from '../../type/DataType';
+interface HistoryItem {
+    total_correct: number;
+    total_questions: number;
+    name: string;
+    id: number;
+    date: string;
+    diemm: number;
+  }
 function Ranking() {
-    const [listHistory, setListHistory] = useState([]);
+    const [listHistory, setListHistory] = useState<HistoryItem[]>([]);
     useEffect(() => {
         fetchHistory();
     },[]);
     const fetchHistory = async () => {
-        let res = await getHistory();
-        console.log(res);
+        let res:DataType = await getHistory();
         if (res && res.EC === 0) {
-            let newData = res.DT.data.map((item) => {
+            let newData = res.DT.data.map((item:any) => {
                 return {
                     total_correct: item.total_correct,
                     total_questions: item.total_questions,
                     name: item.quizHistory.name ?? '',
                     id: item.id,
                     date: moment(item.createdAt).utc().format('DD/MM/YYYY hh:mm:ss A'),
-                    diemm: parseInt(item.total_correct * 10),
+                    diemm: (item.total_correct * 10),
                 };
             });
             if (newData.length > 20) {
                 newData = newData.slice(newData.length - 20, newData.length);
             }
-            newData.sort((a,b)=> b.diemm - a.diemm)
+            newData.sort((a:HistoryItem,b:HistoryItem)=> b.diemm - a.diemm)
             setListHistory(newData);
         }
     };

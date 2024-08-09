@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { changePassword } from '../../service/apiService';
-import Header from '../../components/header/Header';
 import './ChangePass.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DataType } from '../../type/DataType';
 function ChangePass() {
-    const [pass, setPass] = useState('');
-    const [newPass, setNewPass] = useState('');
-    const [rePass, setRePass] = useState('');
+    const [pass, setPass] = useState<string>('');
+    const [newPass, setNewPass] = useState<string>('');
+    const [rePass, setRePass] = useState<string>('');
     const hanndleChangePass = async () => {
         if(newPass!==rePass){
             toast.error("Mật khẩu mới không trùng khớp");
             return;
         }
-        let res = await changePassword(pass, newPass);
-        // console.log
+        let res:DataType = await changePassword(pass, newPass);
         if (res && res.EC === 0) {
             toast.success("Change password Success !!!!");
             setNewPass(''); setPass('');

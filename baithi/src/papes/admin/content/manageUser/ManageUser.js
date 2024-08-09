@@ -53,22 +53,27 @@ function ManageUser() {
                 </div>
                 <div className="btn-table-user">
                     <TableUserPaginate
+                        listUser={listUser}
                         handleUpdateShow={handleUpdateShow}
                         handleDeleteShow={handleDeleteShow}
                         pageCount={pageCount}
+                        fetchListUserWithPaginate={fetchListUserWithPaginate}
                     />
                 </div>
-                <ModalCreateUser show={show} setShow={setShow} />
+                <ModalCreateUser show={show} setShow={setShow} fetchListUserWithPaginate={fetchListUserWithPaginate} />
                 <ModelUpdate
+                    listUser={listUser}
                     show={showUpdate}
                     setShow={setShowUpdate}
                     dataUpdate={dataUpdate}
                     resetUpdate={resetUpdate}
+                    fetchListUserWithPaginate={fetchListUserWithPaginate}
                 />
                 <ModelDelete
                     show={showDelete}
                     setShow={setShowDelete}
                     dataDelete={dataDelete}
+                    fetchListUserWithPaginate={fetchListUserWithPaginate}
                 />
             </div>
         </div>

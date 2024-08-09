@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 import { postRegister } from "../../service/apiService";
 import { validateEmail } from "../../util/validate";
-interface RegisterRespone{
-  EC: number;
-}
+import { DataType } from "../../type/DataType";
 function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
@@ -17,11 +15,10 @@ function Register() {
       alert("Error Format");
       return;
     }
-    const res :RegisterRespone = await postRegister(email, username, password);
-    if (res && res.EC === 0 ) {
+    const res: DataType = await postRegister(email, username, password);
+    if (res && res.EC === 0) {
       navigate("/login");
-    }
-    else if (res && res.EC !== 0) {
+    } else if (res && res.EC !== 0) {
       alert("Nhập sai account. Hãy tạo lại tài khoản");
     }
   };
